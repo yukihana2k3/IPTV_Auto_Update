@@ -123,12 +123,14 @@ https://vtvgolive-liveh12.vtvdigital.vn/aTo9CM5GTDPOJ93XSEcXXA/1783886181/hls/DA
 https://vtvgolive-liveh12.vtvdigital.vn/aTo9CM5GTDPOJ93XSEcXXA/1783886181/hls/DANANGTV/01.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Đồng Nai 2" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250805/2025080516/jqK8LRgbgc-DONGNAI2-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Đồng Nai 2
 https://vtvgolive-ott3.vtvdigital.vn/live/dongnai2tv/playlist.m3u8
+#EXTINF:-1 tvg-id="Truyền hình Đồng Nai 1" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250805/2025080516/3ETlQnyfim-DONGNAI1-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Đồng Nai 1
+https://vtvgolive-ott3.vtvdigital.vn/live/dongnai1tv/playlist.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Đồng Tháp 1" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/THT1HD_150x902_1675158896.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Đồng Tháp 1
 https://vtvgolive-liveh34.vtvdigital.vn/GnDB6gWvYFnfEkql0fnvCw/1783886193/hls/DONGTHAPTV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Khánh Hòa" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/KTVHD_150x902_1675158888.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Khánh Hòa
 https://vtvgolive-liveh12.vtvdigital.vn/rRk21iwCbB3YIZg9Pa4E-g/1783886198/hls/KHANHHOATV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Lai Châu" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/LaiChu_ON_150x901_1675158882.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Lai Châu
-https://luuchieu.truyenhinhso.vn/media/live/AF157BFA0E9FE004C61AD76E/index.m3u8
+https://vtvgolive-liveh12.vtvdigital.vn/q469Vn-DVYWYeZ3OhYr5aw/1783886626/hls/KHANHHOATV/01.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Tây Ninh 1" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260109/2026010916/ksvjJliT5U-v26.TAYNINH-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Tây Ninh 1
 https://live.mediatech.vn/live/2851dc2c9af68834814a89e61db0faee561/playlist.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Thái Nguyên" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/TN1HD_150x902_1675158909.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Thái Nguyên
