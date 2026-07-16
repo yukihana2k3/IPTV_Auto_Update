@@ -128,7 +128,7 @@ https://vtvgolive-ott3.vtvdigital.vn/live/dongnai2tv/chunklist_0.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Khánh Hòa" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/KTVHD_150x902_1675158888.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Khánh Hòa
 https://vtvgolive-liveh12.vtvdigital.vn/fMRc0KLXjle1qngWq_JxLg/1784246801/hls/KHANHHOATV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Lai Châu" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/LaiChu_ON_150x901_1675158882.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Lai Châu
-https://luuchieu.truyenhinhso.vn/media/live/AF157BFA0E9FE004C61AD76E/index.m3u8
+https://vtvgolive-liveh12.vtvdigital.vn/bZzomjw3t7A_ezuJGviaKw/1784249336/hls/KHANHHOATV/01.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Tây Ninh 1" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260109/2026010916/ksvjJliT5U-v26.TAYNINH-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Tây Ninh 1
 https://live.mediatech.vn/live/2851dc2c9af68834814a89e61db0faee561/playlist.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Thái Nguyên" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/TN1HD_150x902_1675158909.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Thái Nguyên
@@ -168,7 +168,7 @@ https://tructuyen.baoquangtri.vn:5443/LiveApp/streams/20VcR6dL2B9Krwob1348695669
 #EXTINF:-1 tvg-id="Truyền hình Lào Cai" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/aocai1.jpg" group-title="Kênh thiết yếu và địa phương", Truyền hình Lào Cai
 https://live.baolaocai.vn/channel2/stream.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Cao Bằng" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250629/2025062921/bp3OM91imT-Logo-CAOBANG-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Cao Bằng
-https://luuchieu.truyenhinhso.vn/media/live/FEC4E26FBD78CE924E91BC03/index.m3u8
+https://live.baolaocai.vn/channel2/stream.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Hà Tĩnh" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250629/2025062922/6yqJDL6bnV-Logo-HATINH-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hà Tĩnh
 https://luuchieu.truyenhinhso.vn/media/live/FEC4E26FBD78CE924E91BC03/index.m3u8
 #EXTINF:-1 tvg-id="SCTV2" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260412/2026041216/YObRToWhuz-SCTV2-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV2
