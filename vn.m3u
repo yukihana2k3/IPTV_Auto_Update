@@ -138,11 +138,11 @@ https://vtvgolive-ott4.vtvdigital.vn/live/huetv/playlist.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Cà Mau" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/camau1.jpg" group-title="Kênh thiết yếu và địa phương", Truyền hình Cà Mau
 https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/camau-manifest.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Đắk Lắk" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/daklack1.jpg" group-title="Kênh thiết yếu và địa phương", Truyền hình Đắk Lắk
-https://cdn.drt.vn/live/285a27750861b964c27af22091662a74f2f/playlist.m3u8
+https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/camau-720p.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Hải Phòng 3" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250710/2025071010/EVSyTHUmZy-HAIDUONG-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hải Phòng 3
 https://vtvgolive-liveh34.vtvdigital.vn/Rws0uKycXePPXtn5kj1N1A/1784808547/hls/HAIDUONGTV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Hải Phòng" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250629/2025062921/ULdMAR50e1-Logo-HAIPHONG-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hải Phòng
-https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/haiphongtv-manifest.m3u8
+https://vtvgolive-liveh34.vtvdigital.vn/YDFqNqt_vrwSuF7UqpJARQ/1784808777/hls/HAIDUONGTV/01.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Điện Biên" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/dienbien1.jpg" group-title="Kênh thiết yếu và địa phương", Truyền hình Điện Biên
 https://vtvgolive-ott4.vtvdigital.vn/live/dbientv/playlist.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Bắc Ninh" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250908/2025090816/9z0Q7YykKF-BTV-KENHVTVgo-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Bắc Ninh
