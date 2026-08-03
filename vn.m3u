@@ -24,7 +24,7 @@ https://vtvgolive-vtv02.vtvdigital.vn/9QvCqLvKBlxXkndxpoJCsQ/1785793023/hls/vtv/
 #EXTINF:-1 tvg-id="VTV10" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260330/2026033009/9JSImeokNB-VTV10-THUMBNAIL-KENH-VTVgo-150x90.webp" group-title="Kênh VTV", VTV10
 https://vtvgolive-vtv02.vtvdigital.vn/9QvCqLvKBlxXkndxpoJCsQ/1785793023/hls/vtv/live/vtv10/free/master.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Công an Nhân dân" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/AnNinhTVHD_150x902_1675158868.webp" group-title="Kênh VTV", Truyền hình Công an Nhân dân
-https://vtvgolive-liveh12.vtvdigital.vn/PWh8FqL46Kd3aSSDhzpqig/1785744127/hls/ANNINHTV/index.m3u8
+https://vtvgolive-liveh12.vtvdigital.vn/fNZEOqtQxyuXoDrZ_i19hw/1785748626/hls/ANNINHTV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Quốc phòng Việt Nam" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/QPVN_150x902_1675158863.webp" group-title="Kênh VTV", Truyền hình Quốc phòng Việt Nam
 https://vtvgolive-liveh12.vtvdigital.vn/WCCe3K0DZpYZDjVbazcVaA/1785749388/hls/QPTV/index.m3u8
 #EXTINF:-1 tvg-id="VTV1" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/VTV1_150x902_1675159127.webp" group-title="Kênh VTV", VTV1
@@ -98,9 +98,9 @@ https://fo-hlc.tv360.vn/bpk-tv/251/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsIn
 #EXTINF:-1 tvg-id="Vĩnh Long 5" tvg-logo="https://img-zlr1.tv360.vn/image1/2025/09/26/10/1758857744376/434dd0684f49_480_270.png" group-title="Kênh Vĩnh Long", Vĩnh Long 5
 https://fo-hlc.tv360.vn/bpk-tv/423/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXRob2QiOiJHRVQiLCJleHAiOjE3ODU3NTcwODYsInVyaSI6Ii9icGstdHYvNDIzL291dHB1dC9pbmRleC5tM3U4In0.09Ws7WlFtngyw6xH4SunFbszBE0UpeNGDt7wsaXYd7A&minrate=0&maxrate=12000000&uid=113.161.134.128
 #EXTINF:-1 tvg-id="Truyền hình Hà Nội 1" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250630/2025063000/bdzDQczOL1-HNi1HD_150x902_1675158874.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hà Nội 1
-https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/hanoi1-manifest.m3u8
+https://vtvgolive-liveh34.vtvdigital.vn/U2B6eHotc1bs_zacnU-p-Q/1785748882/hls/HANOI1TV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Hà Nội 2" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250630/2025063000/QxWgqaBoV4-HNi2HD_150x902_1675158865.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hà Nội 2
-https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/hanoi2-manifest.m3u8
+https://vtvgolive-liveh34.vtvdigital.vn/5otDj0K1jkzP3R-yRbLycw/1785748943/hls/HANOI2TV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Hưng Yên" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/HngYnTVHD_150x902_1675158887.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hưng Yên
 https://vtvgolive-liveh12.vtvdigital.vn/3ckctPSXPGkNFbCG3VyBsQ/1785749445/hls/HUNGYENTV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Thanh Hóa" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/TTVHD_150x902_1675158896.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Thanh Hóa
@@ -128,9 +128,9 @@ https://vtvgolive-vtclc.vtvdigital.vn/nFp38C_KdicU67uyV_J5CA/1785749545/media/li
 #EXTINF:-1 tvg-id="Truyền hình Thái Nguyên" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/TN1HD_150x902_1675158909.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Thái Nguyên
 https://vtvgolive-liveh34.vtvdigital.vn/zBVqqJvVOFkiLighO3yNtg/1785749553/hls/THAINGUYENTV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Cà Mau" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/camau1.jpg" group-title="Kênh thiết yếu và địa phương", Truyền hình Cà Mau
-https://vtvgolive-liveh34.vtvdigital.vn/63fopAE-q5Nz5gXivyWgqA/1785742656/hls/THAINGUYENTV/01.m3u8
+https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/camau-manifest.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Đắk Lắk" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/daklack1.jpg" group-title="Kênh thiết yếu và địa phương", Truyền hình Đắk Lắk
-https://cdn.drt.vn/live/285a27750861b964c27af22091662a74f2f/playlist.m3u8
+https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/camau-720p.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Hải Phòng" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250629/2025062921/ULdMAR50e1-Logo-HAIPHONG-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hải Phòng
 https://vtvgolive-vtclc.vtvdigital.vn/MCVGRl_AUwSt59ZFUkS7aA/1785749753/media/live/92B1DFD1EC042E0358662585/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Bắc Ninh" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250908/2025090816/9z0Q7YykKF-BTV-KENHVTVgo-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Bắc Ninh
