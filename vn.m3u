@@ -98,9 +98,9 @@ https://fo-hlc.tv360.vn/bpk-tv/251/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsIn
 #EXTINF:-1 tvg-id="Vĩnh Long 5" tvg-logo="https://img-zlr1.tv360.vn/image1/2025/09/26/10/1758857744376/434dd0684f49_480_270.png" group-title="Kênh Vĩnh Long", Vĩnh Long 5
 https://fo-hlc.tv360.vn/bpk-tv/423/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXRob2QiOiJHRVQiLCJleHAiOjE3ODU4NjkwNjQsInVyaSI6Ii9icGstdHYvNDIzL291dHB1dC9pbmRleC5tM3U4In0.DW18ox_R8RENKU6Ll0D7xOxen-CRTG9uEgjRuNJRrig&minrate=0&maxrate=12000000&uid=116.101.79.107
 #EXTINF:-1 tvg-id="Truyền hình Hà Nội 1" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250630/2025063000/bdzDQczOL1-HNi1HD_150x902_1675158874.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hà Nội 1
-https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/hanoi1-manifest.m3u8
+# Lỗi: None | Link test: 
 #EXTINF:-1 tvg-id="Truyền hình Hà Nội 2" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250630/2025063000/QxWgqaBoV4-HNi2HD_150x902_1675158865.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hà Nội 2
-https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/hanoi2-manifest.m3u8
+# Lỗi: None | Link test: 
 #EXTINF:-1 tvg-id="Truyền hình Hưng Yên" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/HngYnTVHD_150x902_1675158887.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hưng Yên
 https://vtvgolive-liveh12.vtvdigital.vn/cLdQVUZ2EQRQVkExOfy_aQ/1785861314/hls/HUNGYENTV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Thanh Hóa" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/TTVHD_150x902_1675158896.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Thanh Hóa
@@ -128,15 +128,15 @@ https://vtvgolive-vtclc.vtvdigital.vn/JV4yeGbeYTOq1tgMVuvDhA/1785861369/media/li
 #EXTINF:-1 tvg-id="Truyền hình Thái Nguyên" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/TN1HD_150x902_1675158909.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Thái Nguyên
 https://vtvgolive-liveh34.vtvdigital.vn/fc-OseBZ0A59wO8cQz7vmw/1785861375/hls/THAINGUYENTV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Cà Mau" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/camau1.jpg" group-title="Kênh thiết yếu và địa phương", Truyền hình Cà Mau
-https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/camau-manifest.m3u8
+# Lỗi: None | Link test: 
 #EXTINF:-1 tvg-id="Truyền hình Đắk Lắk" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/daklack1.jpg" group-title="Kênh thiết yếu và địa phương", Truyền hình Đắk Lắk
-https://cdn.drt.vn/live/285a27750861b964c27af22091662a74f2f/playlist.m3u8
+# Lỗi: None | Link test: 
 #EXTINF:-1 tvg-id="Truyền hình Hải Phòng" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250629/2025062921/ULdMAR50e1-Logo-HAIPHONG-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hải Phòng
 https://vtvgolive-vtclc.vtvdigital.vn/zdRbHLaMeZgpX1oM0niTng/1785861392/media/live/92B1DFD1EC042E0358662585/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Bắc Ninh" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250908/2025090816/9z0Q7YykKF-BTV-KENHVTVgo-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Bắc Ninh
 https://vtvgolive-liveh34.vtvdigital.vn/uZCpEd0e5b7QS9KUafit2g/1785861398/hls/BACGIANGTV/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Cần Thơ 2" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260204/2026020411/z41bFzmotE-CANTHO2-KENHVTVgo-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Cần Thơ 2
-https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/cantho2-manifest.m3u8
+# Lỗi: None | Link test: 
 #EXTINF:-1 tvg-id="Truyền hình Sơn La" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250306/2025030611/logo-stv.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Sơn La
 https://vtvgolive-vtclc.vtvdigital.vn/1_GVPO8nsUpYUHFAO0l2vA/1785861410/media/live/A8341460A6E325278B3B528C/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Tuyên Quang" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/tuyenquang1.jpg" group-title="Kênh thiết yếu và địa phương", Truyền hình Tuyên Quang
