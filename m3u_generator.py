@@ -131,7 +131,12 @@ def generate_m3u(vtv_master_link, master_channels_list, file_path, vn_proxies, u
         if 'sctv' in gn_lower: return 99 
         return 6 
 
-    master_channels_list.sort(key=lambda x: get_group_priority(x['group_name']))
+    # FIX: VTV1 có thể bị trôi xuống cuối mảng khi hệ thống dời kênh này xuống quét ngầm.
+    # Sử dụng tuple 2 chiều (Group Priority, Channel Priority) để cưỡng ép VTV1 LUÔN LUÔN đứng đầu (chỉ số 0) trong nhóm của nó.
+    master_channels_list.sort(key=lambda x: (
+        get_group_priority(x['group_name']),
+        0 if x['name'].strip().upper() == 'VTV1' else 1
+    ))
 
     m3u_content = "#EXTM3U\n"
     proxy_state = {'ip': None, 'proto': 'http', 'banned': set()}
