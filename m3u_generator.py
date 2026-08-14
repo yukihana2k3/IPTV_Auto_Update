@@ -64,7 +64,7 @@ def check_link_is_alive(url, proxy_ip=None, protocol="http"):
         return False
 
 def find_proxy_for_streaming(master_link, exclude_set, vn_proxies, logger):
-    logger("   [Ping Nội Suy] 🔄 Đang tìm Proxy có khả năng Stream (Ping test nghiệm thu VTV1)...")
+    logger("   [Ping Nội Suy] 🔄 Đang tìm Proxy có khả năng Stream (Ping test nghiệm thu VTV)...")
     for proxy_data in vn_proxies:
         ip_port = proxy_data['ip']
         protocol = proxy_data['protocol']
@@ -81,7 +81,7 @@ def verify_sctv_link_with_proxy(target_link, master_link, ch_name, proxy_state, 
     
     if not use_auto_proxy:
         link_is_ok = check_link_is_alive(target_link)
-        if not link_is_ok: logger(f"      -> ❌ Link {ch_name} trả về HTTP Lỗi (Đã chết). Đã loại bỏ.")
+        if not link_is_ok: logger(f"      -> ❌ Link {ch_name} trả về HTTP Lỗi (Đã chết).")
     else:
         for attempt in range(3): 
             if not proxy_state['ip']:
@@ -99,7 +99,7 @@ def verify_sctv_link_with_proxy(target_link, master_link, ch_name, proxy_state, 
             else:
                 proxy_health_check = check_link_is_alive(master_link, proxy_state['ip'], proxy_state['proto'])
                 if proxy_health_check:
-                    logger(f"      -> ❌ Link {ch_name} thực sự đã CHẾT (Proxy vẫn sống). Đã loại bỏ.")
+                    logger(f"      -> ❌ Link {ch_name} thực sự đã CHẾT (Proxy vẫn sống).")
                     link_is_ok = False
                     break
                 else:
@@ -138,9 +138,81 @@ def generate_m3u(vtv_master_link, master_channels_list, file_path, vn_proxies, u
         0 if x['name'].strip().upper() == 'VTV1' else 1
     ))
 
-    m3u_content = "#EXTM3U\n"
+    # BUSINESS RULE: 1. THU THẬP KHUÔN MẪU (Chỉ lấy kênh VTV Trung Ương)
+    vtv_master_pool = []
+    if vtv_master_link:
+        vtv_master_pool.append({'name': 'VTV 1', 'link': vtv_master_link})
+        
+    for ch in master_channels_list:
+        if ch.get('m3u8_link') and ch['source'] == 'vtvgo_dynamic':
+            # Chỉ lấy các kênh thuộc official_vtv_group (Loại bỏ triệt để nhóm Địa Phương)
+            if ch['group_name'] == official_vtv_group:
+                if not any(x['link'] == ch['m3u8_link'] for x in vtv_master_pool):
+                    vtv_master_pool.append({'name': ch['name'], 'link': ch['m3u8_link']})
+
+    # BUSINESS RULE: 2. BỘ NHỚ TRÍ TUỆ NHÂN TẠO (Đọc file Cache)
+    golden_cache_file = "sctv_golden_cache.txt"
+    cached_vtv_name = None
+    try:
+        if os.path.exists(golden_cache_file):
+            with open(golden_cache_file, "r", encoding="utf-8") as f:
+                cached_vtv_name = f.read().strip()
+                if cached_vtv_name:
+                    logger(f"\n   [System] Đọc bộ nhớ: Lần trước {cached_vtv_name} là Khuôn chuẩn. Sẽ thử lại ưu tiên số 1.")
+    except: pass
+
+    # Tái sắp xếp ưu tiên Khuôn mẫu dựa vào bộ nhớ
+    if cached_vtv_name:
+        for i, item in enumerate(vtv_master_pool):
+            if item['name'] == cached_vtv_name:
+                vtv_master_pool.insert(0, vtv_master_pool.pop(i))
+                break
+
+    # Trạng thái Proxy dùng chung cho toàn bộ pha Hiệu chuẩn và Nội suy thực tế
     proxy_state = {'ip': None, 'proto': 'http', 'banned': set()}
+    golden_template_link = None
     
+    # BUSINESS RULE: 3. PHA HIỆU CHUẨN CHÉO (Thử nghiệm trên 3 kênh SCTV để tìm Khuôn chuẩn)
+    sctv_subjects = [c for c in master_channels_list if c['source'] in ('vtvgo_static', 'fallback_only') and not c.get('skip') and ('sctv' in c['group_name'].lower() or 'sctv' in c['name'].lower())][:3]
+    
+    if sctv_subjects and vtv_master_pool:
+        logger(f"\n   [System] Đang tìm nghiệm Khuôn mẫu chuẩn cho SCTV từ {len(vtv_master_pool)} kênh VTV Trung Ương...")
+        for template in vtv_master_pool:
+            template_name = template['name']
+            template_link = template['link']
+            logger(f"      -> Thử Khuôn mẫu: {template_name}...")
+            
+            is_valid = False
+            for subj in sctv_subjects:
+                folder_id = get_vtv_acronym(subj['name'])
+                token_match = re.search(r'\.vn/([^/]+/[^/]+)/', template_link)
+                if token_match:
+                    tokens = token_match.group(1)
+                    test_link = f"https://vtvgolive-sctvdrm.vtvdigital.vn/{tokens}/manifest/{folder_id}/master.m3u8"
+                else:
+                    test_link = re.sub(r'(/manifest/|/live/)[^/]+(/)', f'\\g<1>{folder_id}\\g<2>', template_link)
+                
+                # Chỉ cần 1 kênh SCTV test thành công là chốt sổ ngay lập tức
+                if verify_sctv_link_with_proxy(test_link, template_link, subj['name'], proxy_state, vn_proxies, use_auto_proxy, logger):
+                    is_valid = True
+                    break
+                    
+            if is_valid:
+                golden_template_link = template_link
+                logger(f"      ✅ TÌM RA KHUÔN CHUẨN: {template_name} (Sẽ dùng duy nhất khuôn này cho tất cả SCTV)")
+                # BUSINESS RULE: 4. GHI ĐÈ BỘ NHỚ (Cập nhật lại tên Kênh Vàng cho lần sau)
+                try:
+                    with open(golden_cache_file, "w", encoding="utf-8") as f:
+                        f.write(template_name)
+                except: pass
+                break
+            else:
+                logger(f"      -> ⚠️ Khuôn {template_name} không phù hợp. Đang chuyển khuôn khác...")
+                
+        if not golden_template_link:
+            logger(f"      -> ❌ BÓ TAY: Toàn bộ {len(vtv_master_pool)} Khuôn mẫu VTV đều không mở được SCTV.")
+
+    m3u_content = "#EXTM3U\n"
     for ch in master_channels_list:
         if ch.get('skip') and not ch.get('m3u8_link'): continue 
         
@@ -153,29 +225,26 @@ def generate_m3u(vtv_master_link, master_channels_list, file_path, vn_proxies, u
              m3u_content += f"{ch['m3u8_link']}\n"
              continue
 
+        # BUSINESS RULE: 5. TRIỂN KHAI HÀNG LOẠT (Dùng Khuôn Vàng áp dụng cho SCTV)
         if ch['source'] == 'vtvgo_static':
-            if not vtv_master_link: continue
+            if not golden_template_link: 
+                # Không có Khuôn Vàng => Bỏ qua không in kênh lỗi này ra file
+                continue
             
             folder_id = get_vtv_acronym(ch_name)
-            is_sctv = 'sctv' in group_name.lower() or 'sctv' in ch_name.lower()
-            
-            if is_sctv:
-                token_match = re.search(r'\.vn/([^/]+/[^/]+)/', vtv_master_link)
-                if token_match:
-                    tokens = token_match.group(1)
-                    new_link = f"https://vtvgolive-sctvdrm.vtvdigital.vn/{tokens}/manifest/{folder_id}/master.m3u8"
-                else:
-                    new_link = re.sub(r'(/manifest/|/live/)[^/]+(/)', f'\\g<1>{folder_id}\\g<2>', vtv_master_link)
+            token_match = re.search(r'\.vn/([^/]+/[^/]+)/', golden_template_link)
+            if token_match:
+                tokens = token_match.group(1)
+                new_link = f"https://vtvgolive-sctvdrm.vtvdigital.vn/{tokens}/manifest/{folder_id}/master.m3u8"
             else:
-                new_link = re.sub(r'(/manifest/|/live/)[^/]+(/)', f'\\g<1>{folder_id}\\g<2>', vtv_master_link)
+                new_link = re.sub(r'(/manifest/|/live/)[^/]+(/)', f'\\g<1>{folder_id}\\g<2>', golden_template_link)
             
-            if is_sctv:
-                if verify_sctv_link_with_proxy(new_link, vtv_master_link, ch_name, proxy_state, vn_proxies, use_auto_proxy, logger):
-                    m3u_content += extinf_line
-                    m3u_content += f"{new_link}\n"
-            else:
+            # Vì Khuôn Vàng đã được chứng minh là đúng chuẩn 100%, nếu Ping fail thì kênh đã chết server thật sự.
+            if verify_sctv_link_with_proxy(new_link, golden_template_link, ch_name, proxy_state, vn_proxies, use_auto_proxy, logger):
                 m3u_content += extinf_line
                 m3u_content += f"{new_link}\n"
+            else:
+                logger(f"      -> ❌ Kênh {ch_name} đã CHẾT THẬT SỰ trên Server (Đã loại bỏ khỏi danh sách).")
                 
         elif ch['source'] in ('vtvgo_dynamic', 'tv360_dynamic'):
             error_info = ch.get('error_msg', 'Không rõ')
@@ -184,9 +253,9 @@ def generate_m3u(vtv_master_link, master_channels_list, file_path, vn_proxies, u
         
         elif ch['source'] == 'fallback_only':
             is_sctv = 'sctv' in group_name.lower() or 'sctv' in ch_name.lower()
-            
-            if is_sctv and vtv_master_link:
-                if verify_sctv_link_with_proxy(ch['m3u8_link'], vtv_master_link, ch_name, proxy_state, vn_proxies, use_auto_proxy, logger):
+            if is_sctv and golden_template_link:
+                # Vẫn dùng Khuôn Vàng để kiểm tra Proxy Ping cho Fallback
+                if verify_sctv_link_with_proxy(ch['m3u8_link'], golden_template_link, ch_name, proxy_state, vn_proxies, use_auto_proxy, logger):
                     m3u_content += extinf_line
                     m3u_content += f"{ch['m3u8_link']}\n"
             else:
@@ -194,7 +263,7 @@ def generate_m3u(vtv_master_link, master_channels_list, file_path, vn_proxies, u
                 m3u_content += f"{ch['m3u8_link']}\n"
         
     try:
-        logger(f"   [Debug] Đang tiến hành ghi file vào đường dẫn: {file_path}")
+        logger(f"\n   [Debug] Đang tiến hành ghi file vào đường dẫn: {file_path}")
         dir_name = os.path.dirname(file_path)
         if dir_name: 
             os.makedirs(dir_name, exist_ok=True)

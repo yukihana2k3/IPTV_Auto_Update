@@ -326,10 +326,15 @@ def _parse_vtv_json_data(api_json_data, logger):
             gn_lower = gn_name.lower()
             ch_name_lower = c.get('name', '').lower()
             
+            # BUSINESS RULE: Chặn đứng các kênh VTVCab / ON Sports trả phí lọt thỏm trong nhóm "Trong nước" 
+            # để tránh dính bẫy lỗi 3 lần liên tiếp gây vứt bỏ Proxy oan uổng.
+            if ch_name_lower.startswith('on ') or 'vtvcab' in gn_lower or 'vtvcab' in ch_name_lower:
+                continue
+            
             if any(kw in gn_lower or kw in ch_name_lower for kw in ['vtv', 'sctv', 'địa phương', 'dia phuong', 'trong nước', 'thiết yếu']):
-                if 'vtvcab' in gn_lower or 'vtvcab' in ch_name_lower: continue
-                
-                src_type = 'vtvgo_dynamic' if any(kw in gn_lower or kw in ch_name_lower for kw in ['địa phương', 'dia phuong', 'trong nước', 'thiết yếu']) else 'vtvgo_static'
+                # BUSINESS RULE: Mọi kênh VTV (ngoại trừ SCTV) đều bị ép thành 'vtvgo_dynamic'
+                # Điều này ngăn chặn việc tự nội suy Link dễ dính lỗi nếu URL VTV thay đổi.
+                src_type = 'vtvgo_static' if 'sctv' in gn_lower or 'sctv' in ch_name_lower else 'vtvgo_dynamic'
                 slug = create_slug(c.get('name')) if not c.get('slug') else c.get('slug')
                 vtv_channels.append({
                     'id': str(c.get('id')), 'name': c.get('name'), 'logo': c.get('logo', ''),
@@ -341,7 +346,7 @@ def _parse_vtv_json_data(api_json_data, logger):
                 count_channels += 1
 
     if vtv_channels:
-        logger(f"[VTV/Parser] - [SUCCESS] - Phân tích được {count_channels} kênh VTV/SCTV/Địa Phương.")
+        logger(f"[VTV/Parser] - [SUCCESS] - Phân tích được {count_channels} kênh VTV/SCTV/Địa Phương (Đã lọc sạch ON Sports).")
     return vtv_channels
 
 def _parse_vtv_fallback_dom(page_source, logger):
@@ -356,8 +361,16 @@ def _parse_vtv_fallback_dom(page_source, logger):
             gn_lower = gn_name.lower()
             if any(kw in gn_lower for kw in ['vtv', 'sctv', 'địa phương', 'dia phuong', 'trong nước', 'thiết yếu']):
                 if 'vtvcab' in gn_lower: continue
-                src_type = 'vtvgo_dynamic' if any(kw in gn_lower for kw in ['địa phương', 'dia phuong', 'trong nước', 'thiết yếu']) else 'vtvgo_static'
+                
+                # BUSINESS RULE: Ép kênh VTV phải cào thực tế, chỉ SCTV mới cho đoán link (static)
+                src_type = 'vtvgo_static' if 'sctv' in gn_lower else 'vtvgo_dynamic'
                 for c in group.get('channels', []):
+                    ch_name_lower = c.get('name', '').lower()
+                    
+                    # BUSINESS RULE: Chặn đứng các kênh VTVCab / ON Sports trả phí
+                    if ch_name_lower.startswith('on ') or 'vtvcab' in ch_name_lower:
+                        continue
+                        
                     slug = create_slug(c.get('name')) if not c.get('slug') else c.get('slug')
                     vtv_channels.append({
                         'id': str(c.get('id')), 'name': c.get('name'), 'logo': c.get('logo', ''),
@@ -419,7 +432,6 @@ def _vtv_extract_dom_loop(driver, vtv_ip, vtv_proto, logger):
                 vtv_master_link = temp_vtv_master_link
                     
             # BUSINESS RULE: Nếu lấy được DOM thì phá vỡ vòng lặp retry ngay lập tức.
-            # Không cần quan tâm đã có vtv_master_link hay chưa vì chiến thuật "Dời VTV1" sẽ xử lý sau.
             if dom_success:
                 if vtv_master_link:
                     for ch in vtv_channels:
@@ -460,7 +472,9 @@ def _vtv_fallback_from_old_file(old_links_dict, logger):
         gn_lower = old_data.get('group', '').lower()
         if 'vtv' in gn_lower or 'địa phương' in gn_lower or 'sctv' in gn_lower:
             if 'vtvcab' in gn_lower: continue
-            src_type = 'vtvgo_static' if ('vtv' in gn_lower or 'sctv' in gn_lower) else 'vtvgo_dynamic'
+            
+            # BUSINESS RULE: Tương tự như trên, chỉ sctv là static
+            src_type = 'vtvgo_static' if 'sctv' in gn_lower else 'vtvgo_dynamic'
             vtv_channels.append({
                 'id': 'fallback', 'name': old_name, 'logo': old_data.get('logo', ''),
                 'group_name': old_data.get('group', 'Khác'), 
@@ -508,8 +522,6 @@ def process_vtv_pipeline(old_links_dict, alive_cached, exclude_proxies, vn_proxi
 
     # BUSINESS RULE: Nếu lấy được DOM nhưng mất Link Gốc VTV1, 
     # ta ép kênh VTV1 thành dạng "quét ngầm" và đẩy xuống CUỐI MẢNG.
-    # Khi hệ thống duyệt qua hết các kênh địa phương đầu tiên và tìm ra Proxy "chân ái" ổn định nhất, 
-    # VTV1 nằm ở cuối mảng sẽ hốt trọn link thành công bằng Proxy xịn đó.
     if vtv_channels and not vtv_master_link and vtv_channels[0]['source'] != 'fallback_only':
         vtv1_idx = None
         for idx, ch in enumerate(vtv_channels):
@@ -643,7 +655,6 @@ def _tv360_extract_dom_loop(driver, tv360_ip, tv360_proto, logger):
 def _tv360_fallback_from_old_file(old_links_dict, logger):
     logger("[TV360/Fallback] - [START] - Đang khôi phục DOM từ file M3U cũ...")
     tv360_channels = []
-    # BUSINESS RULE: Tương tự như VTV, chỉ khôi phục các kênh có khả năng lấy được từ file cũ đối với TV360.
     for old_name, old_data in old_links_dict.items():
         gn_lower = old_data.get('group', '').lower()
         if 'vĩnh long' in gn_lower or 'thvl' in gn_lower or 'htv' in gn_lower or 'vtv cab' in gn_lower or 'vtvcab' in gn_lower:
