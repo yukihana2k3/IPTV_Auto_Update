@@ -56,8 +56,11 @@ def reboot_driver(driver, proxy_ip=None, protocol="http"):
 
 def catch_m3u8_vtvgo(driver, url, max_wait=60):
     try:
+        # BUSINESS RULE: Dựng Bức tường cách ly. Mở trang trắng để giết chết các luồng mạng ngầm (file .ts, file độ phân giải phụ) của kênh trước đó.
+        driver.get('about:blank')
+        driver.get_log('performance') # Xả sạch toàn bộ log cũ bị tồn đọng trong bộ đệm
+        
         driver.set_page_load_timeout(max_wait)
-        driver.get_log('performance') 
         driver.get(url)
         
         # WORKAROUND: Cắt lỗ Fail-Fast. Nếu Proxy sập, Chrome sẽ trả về trang hiển thị lỗi thay vì treo.
@@ -96,8 +99,11 @@ def catch_m3u8_vtvgo(driver, url, max_wait=60):
 
 def catch_m3u8_tv360(driver, url, max_wait=60):
     try:
-        driver.set_page_load_timeout(max_wait)
+        # BUSINESS RULE: Dựng Bức tường cách ly chống rò rỉ luồng mạng từ kênh trước
+        driver.get('about:blank')
         driver.get_log('performance') 
+        
+        driver.set_page_load_timeout(max_wait)
         driver.get(url)
         
         # WORKAROUND: Báo động mạng Fail-Fast cho TV360
@@ -404,7 +410,11 @@ def _vtv_extract_dom_loop(driver, vtv_ip, vtv_proto, logger):
         logger(f"[VTV/DOM] - [START] - Truy cập VTV1 (Timeout: {t}s)")
         try:
             driver.set_page_load_timeout(t)
-            driver.get_log('performance') 
+            
+            # Dọn dẹp cache log trước khi chạy vòng lặp DOM
+            driver.get('about:blank')
+            driver.get_log('performance')
+            
             driver.get("https://vtvgo.vn/channel/vtv1-1,1.html")
             
             # WORKAROUND: Cắt lỗ nhanh nếu trình duyệt hiển thị màn hình báo lỗi Proxy từ Chrome
@@ -614,6 +624,10 @@ def _tv360_extract_dom_loop(driver, tv360_ip, tv360_proto, logger):
         logger(f"[TV360/DOM] - [START] - Đang tải danh sách kênh (Timeout: {t}s)")
         try:
             driver.set_page_load_timeout(t)
+            
+            driver.get('about:blank')
+            driver.get_log('performance')
+            
             driver.get("https://tv360.vn/tv")
             
             # WORKAROUND: Kiểm tra trang báo lỗi do mạng sập
