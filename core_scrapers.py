@@ -326,9 +326,9 @@ def _parse_vtv_json_data(api_json_data, logger):
             gn_lower = gn_name.lower()
             ch_name_lower = c.get('name', '').lower()
             
-            # BUSINESS RULE: Chặn đứng các kênh VTVCab / ON Sports trả phí lọt thỏm trong nhóm "Trong nước" 
-            # để tránh dính bẫy lỗi 3 lần liên tiếp gây vứt bỏ Proxy oan uổng.
-            if ch_name_lower.startswith('on ') or 'vtvcab' in gn_lower or 'vtvcab' in ch_name_lower:
+            # BUSINESS RULE: Chặn đứng các kênh VTVCab / ON Sports trả phí lọt thỏm trong nhóm "Trong nước"
+            # Cập nhật: Chặn thêm nhóm "ONE VTV Sport" để ngăn các kênh SCTV cao cấp lọt lưới nội suy hỏng.
+            if ch_name_lower.startswith('on ') or any(kw in gn_lower or kw in ch_name_lower for kw in ['vtvcab', 'one vtv']):
                 continue
             
             if any(kw in gn_lower or kw in ch_name_lower for kw in ['vtv', 'sctv', 'địa phương', 'dia phuong', 'trong nước', 'thiết yếu']):
@@ -346,7 +346,7 @@ def _parse_vtv_json_data(api_json_data, logger):
                 count_channels += 1
 
     if vtv_channels:
-        logger(f"[VTV/Parser] - [SUCCESS] - Phân tích được {count_channels} kênh VTV/SCTV/Địa Phương (Đã lọc sạch ON Sports).")
+        logger(f"[VTV/Parser] - [SUCCESS] - Phân tích được {count_channels} kênh VTV/SCTV/Địa Phương (Đã lọc sạch ON/VTVCab/ONE VTV).")
     return vtv_channels
 
 def _parse_vtv_fallback_dom(page_source, logger):
@@ -359,16 +359,18 @@ def _parse_vtv_fallback_dom(page_source, logger):
         for group in groups:
             gn_name = group.get('name', 'Khác')
             gn_lower = gn_name.lower()
+            
+            # BUSINESS RULE: Chặn đứng nhóm VTVCab và ONE VTV
+            if 'vtvcab' in gn_lower or 'one vtv' in gn_lower: continue
+            
             if any(kw in gn_lower for kw in ['vtv', 'sctv', 'địa phương', 'dia phuong', 'trong nước', 'thiết yếu']):
-                if 'vtvcab' in gn_lower: continue
-                
                 # BUSINESS RULE: Ép kênh VTV phải cào thực tế, chỉ SCTV mới cho đoán link (static)
                 src_type = 'vtvgo_static' if 'sctv' in gn_lower else 'vtvgo_dynamic'
                 for c in group.get('channels', []):
                     ch_name_lower = c.get('name', '').lower()
                     
-                    # BUSINESS RULE: Chặn đứng các kênh VTVCab / ON Sports trả phí
-                    if ch_name_lower.startswith('on ') or 'vtvcab' in ch_name_lower:
+                    # BUSINESS RULE: Chặn đứng các kênh VTVCab / ON Sports / ONE VTV trả phí
+                    if ch_name_lower.startswith('on ') or 'vtvcab' in ch_name_lower or 'one vtv' in ch_name_lower:
                         continue
                         
                     slug = create_slug(c.get('name')) if not c.get('slug') else c.get('slug')
@@ -471,7 +473,8 @@ def _vtv_fallback_from_old_file(old_links_dict, logger):
     for old_name, old_data in old_links_dict.items():
         gn_lower = old_data.get('group', '').lower()
         if 'vtv' in gn_lower or 'địa phương' in gn_lower or 'sctv' in gn_lower:
-            if 'vtvcab' in gn_lower: continue
+            # Chặn nhóm bị blacklist ngay cả trong fallback từ file cũ
+            if 'vtvcab' in gn_lower or 'one vtv' in gn_lower: continue
             
             # BUSINESS RULE: Tương tự như trên, chỉ sctv là static
             src_type = 'vtvgo_static' if 'sctv' in gn_lower else 'vtvgo_dynamic'
