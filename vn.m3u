@@ -72,7 +72,7 @@ https://fo-hlc.tv360.vn/bpk-tv/158/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsIn
 #EXTINF:-1 tvg-id="HTV Thể Thao" tvg-logo="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" group-title="Kênh HTV", HTV Thể Thao
 # Lỗi: Lỗi toàn tập | Link test: https://tv360.vn/tv/htv-the-thao?ch=195&col=5&sect=LIVE&page=home_live
 #EXTINF:-1 tvg-id="HTVC gia đình" tvg-logo="https://img-zlr1.tv360.vn/image1/2020_09_23/160082347056/e8ce9503d96a_480_270.png" group-title="Kênh HTV", HTVC gia đình
-https://fo-hlc.tv360.vn/bpk-tv/398/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXRob2QiOiJHRVQiLCJleHAiOjE3ODcwMzczMzMsInVyaSI6Ii9icGstdHYvMzk4L291dHB1dC9pbmRleC5tM3U4In0.8bIQLOnrpATBHipTUE1QpnsMbXzfXEmOl2qkmlgLIBQ&minrate=0&maxrate=12000000&uid=163.181.207.213
+https://fo-hlc.tv360.vn/bpk-tv/398/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXRob2QiOiJHRVQiLCJleHAiOjE3ODcwNDE0OTEsInVyaSI6Ii9icGstdHYvMzk4L291dHB1dC9pbmRleC5tM3U4In0.gQjh0XjC9iCY7DnkrHR48IwyXiwITHdWmMUtMXxWlGs&minrate=0&maxrate=12000000&uid=163.181.207.213
 #EXTINF:-1 tvg-id="HTVC phụ Nữ" tvg-logo="https://img-zlr1.tv360.vn/image1/2020_09_23/1600823432136/86f5cc6afcf6_480_270.png" group-title="Kênh HTV", HTVC phụ Nữ
 https://fo-hlc.tv360.vn/bpk-tv/420/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXRob2QiOiJHRVQiLCJleHAiOjE3ODcwNDEwNzEsInVyaSI6Ii9icGstdHYvNDIwL291dHB1dC9pbmRleC5tM3U4In0.8dT_S0V555YFbjCOHBKHdHiCpX-Y3x2NLastSV3WNaQ&minrate=0&maxrate=12000000&uid=163.181.207.230
 #EXTINF:-1 tvg-id="HTVC thuần việt" tvg-logo="https://img-zlr1.tv360.vn/image1/2020_09_23/160082344024/e0032bc647da_480_270.png" group-title="Kênh HTV", HTVC thuần việt
@@ -130,7 +130,7 @@ https://vtvgolive-vtclc.vtvdigital.vn/G6hi-jf_OvCmj4Qr3fFNRg/1787032998/media/li
 #EXTINF:-1 tvg-id="Truyền hình Tây Ninh 1" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260109/2026010916/ksvjJliT5U-v26.TAYNINH-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Tây Ninh 1
 https://vtvgolive-ssaimh.vtvdigital.vn/OeJvt-BvJzGPP59yLu0JJQ/1787040204/manifest/dp-tayninhtv/master.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Thái Nguyên" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/TN1HD_150x902_1675158909.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Thái Nguyên
-https://vtvgolive-liveh34.vtvdigital.vn/A0P4jAiFyX6zvSMO7sbLRQ/1787029468/hls/THAINGUYENTV/index.m3u8
+https://vtvgolive-liveh34.vtvdigital.vn/5LgISPFvuIwUkJSC9_LXqQ/1787033340/hls/THAINGUYENTV/index.m3u8
 #EXTINF:-1 tvg-id="Đài PTTH tỉnh Thừa Thiên Huế" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250708/2025070814/9Itnh2Rktb-Logo-HUETV-720x240.webp" group-title="Kênh thiết yếu và địa phương", Đài PTTH tỉnh Thừa Thiên Huế
 https://vtvgolive-ssaimh.vtvdigital.vn/qWnbab4Y2IEgAAD1H0bH1A/1787040665/manifest/dp-huetv/master.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Cà Mau" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/logo/camau1.jpg" group-title="Kênh thiết yếu và địa phương", Truyền hình Cà Mau
