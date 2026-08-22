@@ -202,42 +202,38 @@
 #EXTINF:-1 tvg-id="SCTV1" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260412/2026041216/b4ysqKbf04-SCTV1-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV1
 https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv1/master.m3u8
 #EXTINF:-1 tvg-id="SCTV2" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260412/2026041216/YObRToWhuz-SCTV2-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV2
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv2/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv2/master.m3u8
 #EXTINF:-1 tvg-id="SCTV3" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260412/2026041216/p1MiCYiidb-SCTV3-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV3
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv3/master.m3u8
-#EXTINF:-1 tvg-id="SCTV5" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260412/2026041216/e9S16DWDyC-SCTV5-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV5
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv5/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv3/master.m3u8
+#EXTINF:-1 tvg-id="SCTV4" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260412/2026041216/HggCnromVh-SCTV4-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV4
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv4/master.m3u8
 #EXTINF:-1 tvg-id="SCTV6" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260412/2026041216/f8c5mqiLv6-SCTV6-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV6
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv6/master.m3u8
-#EXTINF:-1 tvg-id="SCTV8" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260412/2026041216/1sMDAjpRqc-SCTV8-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV8
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv8/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv6/master.m3u8
+#EXTINF:-1 tvg-id="SCTV7" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260412/2026041216/qD516wnDG0-SCTV7-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV7
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv7/master.m3u8
 #EXTINF:-1 tvg-id="SCTV9" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/SJutpPZtyO-SCTV9-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV9
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv9/master.m3u8
-#EXTINF:-1 tvg-id="SCTV10" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/3UQyrOhv6E-SCTV10-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV10
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv10/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv9/master.m3u8
 #EXTINF:-1 tvg-id="SCTV11" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/xPKAlJYOW6-SCTV11-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV11
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv11/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv11/master.m3u8
 #EXTINF:-1 tvg-id="SCTV12" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/B7CJjCvfqn-SCTV12-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV12
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv12/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv12/master.m3u8
 #EXTINF:-1 tvg-id="SCTV13" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/ykTa42Ay2e-SCTV13-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV13
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv13/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv13/master.m3u8
 #EXTINF:-1 tvg-id="SCTV14" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/NZclXLGJ2B-SCTV14-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV14
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv14/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv14/master.m3u8
 #EXTINF:-1 tvg-id="SCTV15" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/So1ymji7FZ-SCTV15-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV15
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv15/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv15/master.m3u8
 #EXTINF:-1 tvg-id="SCTV16" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/8Yvig64MFo-SCTV16-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV16
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv16/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv16/master.m3u8
 #EXTINF:-1 tvg-id="SCTV17" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/r6NEwAuXdr-SCTV17-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV17
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv17/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv17/master.m3u8
 #EXTINF:-1 tvg-id="SCTV18" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/G0nuGQDm17-SCTV18-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV18
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv18/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv18/master.m3u8
 #EXTINF:-1 tvg-id="SCTV19" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/kLVkx0cf5b-SCTV19-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV19
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv19/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv19/master.m3u8
 #EXTINF:-1 tvg-id="SCTV20" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/ulWzxd8WxW-SCTV20-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV20
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv20/master.m3u8
-#EXTINF:-1 tvg-id="SCTV21" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260429/2026042910/QlNvU13PBS-SCTV21-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV21
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv21/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv20/master.m3u8
 #EXTINF:-1 tvg-id="SCTVPHIMTH" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260501/2026050108/gC6qaLd0QP-SCTVPhimTongHop-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTVPHIMTH
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctvphimth/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctvphimth/master.m3u8
 #EXTINF:-1 tvg-id="SCTV22" tvg-logo="https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260501/2026050108/nD3w1PLolJ-SCTV22-LOGO-KENHVTVgo-150x90.webp" group-title="Kênh SCTV", SCTV22
-https://vtvgolive-sctvdrm.vtvdigital.vn/8qts34E29eZV4Its_3cqBQ/1787386111/manifest/sctv22/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/5I8NDog2Apn7ZUglMM4XxQ/1787426942/manifest/sctv22/master.m3u8
