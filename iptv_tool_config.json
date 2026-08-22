@@ -1,5 +1,5 @@
 {
     "path": "vn.m3u",
-    "vtv_proxy": "http://165.99.14.18:2765",
+    "vtv_proxy": "",
     "tv360_proxy": "socks5://160.22.17.4:9988"
 }
