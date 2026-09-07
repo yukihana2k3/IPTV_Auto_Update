@@ -2,10 +2,55 @@ import time
 import json
 import re
 import os
+from urllib.parse import urlparse
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from proxy_manager import get_best_proxy_for_target
 from m3u_generator import create_slug
+
+# BUSINESS RULE: Quản lý bộ nhớ Cache tự học của Tool
+SMART_CACHE_FILE = "vtv_smart_cache.json"
+
+def load_smart_cache():
+    try:
+        if os.path.exists(SMART_CACHE_FILE):
+            with open(SMART_CACHE_FILE, 'r', encoding='utf-8') as f:
+                return json.load(f)
+    except: pass
+    return {"catalog_api_path": None, "stream_api_path": None}
+
+def save_smart_cache(cache_data):
+    try:
+        with open(SMART_CACHE_FILE, 'w', encoding='utf-8') as f:
+            json.dump(cache_data, f, ensure_ascii=False, indent=4)
+    except: pass
+
+# BUSINESS RULE: Deep Duck Typing - Nhận diện JSON Danh mục Kênh
+def is_catalog_json(data):
+    try:
+        root = data.get('data', data)
+        groups = root.get('channels', root) if isinstance(root, dict) else root
+        if isinstance(groups, list) and len(groups) > 0:
+            first_group = groups[0]
+            if isinstance(first_group, dict) and 'channels' in first_group:
+                channels = first_group['channels']
+                if isinstance(channels, list) and len(channels) > 0:
+                    first_ch = channels[0]
+                    if 'id' in first_ch and 'name' in first_ch and 'logo' in first_ch:
+                        return True
+    except: pass
+    return False
+
+# BUSINESS RULE: Deep Duck Typing - Nhận diện JSON Stream (Chứa expire và link m3u8)
+def extract_stream_from_json(data):
+    try:
+        str_data = json.dumps(data)
+        if '"expire"' in str_data and '.m3u8' in str_data:
+            match = re.search(r'https?://[^"]+\.m3u8[^"]*', str_data)
+            if match:
+                return match.group(0)
+    except: pass
+    return None
 
 def create_driver(proxy_ip=None, protocol="http"):
     chrome_options = Options()
@@ -54,23 +99,30 @@ def reboot_driver(driver, proxy_ip=None, protocol="http"):
         except: pass
     return create_driver(proxy_ip, protocol)
 
+def is_browser_network_error(driver):
+    """Kiểm tra nhanh xem trình duyệt có đang hiển thị trang báo lỗi mạng/proxy hay không"""
+    try:
+        page_src = driver.page_source
+        return "ERR_CONNECTION" in page_src or "ERR_PROXY" in page_src or "ERR_TIMED_OUT" in page_src
+    except:
+        return True 
+
 def catch_m3u8_vtvgo(driver, url, max_wait=60):
     try:
-        # BUSINESS RULE: Dựng Bức tường cách ly. Mở trang trắng để giết chết các luồng mạng ngầm (file .ts, file độ phân giải phụ) của kênh trước đó.
+        # BUSINESS RULE: Dựng Bức tường cách ly. Mở trang trắng để giết chết các luồng mạng ngầm.
         driver.get('about:blank')
-        driver.get_log('performance') # Xả sạch toàn bộ log cũ bị tồn đọng trong bộ đệm
+        driver.get_log('performance') 
         
         driver.set_page_load_timeout(max_wait)
         driver.get(url)
         
-        # WORKAROUND: Cắt lỗ Fail-Fast. Nếu Proxy sập, Chrome sẽ trả về trang hiển thị lỗi thay vì treo.
-        page_src = driver.page_source
-        if "ERR_CONNECTION" in page_src or "ERR_PROXY" in page_src or "ERR_TIMED_OUT" in page_src:
+        if is_browser_network_error(driver):
             return None, "Proxy chết giữa chừng (Báo động mạng)"
 
-        # FIX: Loại bỏ sleep tĩnh, chuyển logic click vào vòng lặp để đối phó với mạng chậm trên GitHub Actions.
+        smart_cache = load_smart_cache()
+        stream_path = smart_cache.get("stream_api_path")
+
         for i in range(max_wait):  
-            # WORKAROUND: Bám đuổi click Popup Điều khoản và Play Video liên tục mỗi giây
             try:
                 driver.execute_script("""
                     var btns = document.getElementsByTagName('button');
@@ -85,9 +137,37 @@ def catch_m3u8_vtvgo(driver, url, max_wait=60):
             logs = driver.get_log('performance')
             for entry in logs:
                 try:
-                    log_data = json.loads(entry['message'])['message']
-                    if 'Network.requestWillBeSent' in log_data['method']:
-                        req_url = log_data['params']['request']['url']
+                    log_msg = json.loads(entry['message'])['message']
+                    method = log_msg['method']
+                    
+                    if method == 'Network.responseReceived':
+                        resp = log_msg['params']['response']
+                        resp_url = resp.get('url', '')
+                        mime_type = resp.get('mimeType', '')
+                        req_id = log_msg['params']['requestId']
+
+                        if 'application/json' in mime_type and any(domain in resp_url for domain in ['api.vtvdigital.org', 'vtvgo.vn']):
+                            parsed_url = urlparse(resp_url)
+                            path = parsed_url.path.strip('/')
+
+                            # BUSINESS RULE: Ưu tiên siêu tốc - Nếu gặp API quen thuộc trong Cache
+                            if stream_path and path == stream_path:
+                                body = driver.execute_cdp_cmd('Network.getResponseBody', {'requestId': req_id})
+                                m3u8_url = extract_stream_from_json(json.loads(body['body']))
+                                if m3u8_url: return m3u8_url, "OK"
+                            else:
+                                # Fallback Dò Tìm: Nếu Cache chưa có, phân tích mọi JSON đi qua
+                                body = driver.execute_cdp_cmd('Network.getResponseBody', {'requestId': req_id})
+                                json_data = json.loads(body['body'])
+                                m3u8_url = extract_stream_from_json(json_data)
+                                if m3u8_url:
+                                    smart_cache["stream_api_path"] = path
+                                    save_smart_cache(smart_cache)
+                                    return m3u8_url, "OK"
+
+                    # Ultimate Fallback: Phương pháp bắt mạng truyền thống
+                    if method == 'Network.requestWillBeSent':
+                        req_url = log_msg['params']['request']['url']
                         vtv_keywords = ['vtv', 'cdn', 'stream', 'live', 'media', 'truyenhinhso', 'mediatech', 'playlist', 'manifest']
                         if '.m3u8' in req_url and any(kw in req_url.lower() for kw in vtv_keywords):
                             return req_url, "OK"
@@ -99,19 +179,21 @@ def catch_m3u8_vtvgo(driver, url, max_wait=60):
 
 def catch_m3u8_tv360(driver, url, max_wait=60):
     try:
-        # BUSINESS RULE: Dựng Bức tường cách ly chống rò rỉ luồng mạng từ kênh trước
         driver.get('about:blank')
         driver.get_log('performance') 
         
         driver.set_page_load_timeout(max_wait)
         driver.get(url)
         
-        # WORKAROUND: Báo động mạng Fail-Fast cho TV360
-        page_src = driver.page_source
-        if "ERR_CONNECTION" in page_src or "ERR_PROXY" in page_src or "ERR_TIMED_OUT" in page_src:
+        if is_browser_network_error(driver):
             return None, "Proxy chết giữa chừng (Báo động mạng)"
             
-        time.sleep(3) 
+        # FIX: Chờ động - Chờ tối đa 10s để video hoặc thẻ thông báo xuất hiện thay vì sleep tĩnh
+        for _ in range(20): 
+            has_elements = driver.execute_script("return document.querySelectorAll('video').length > 0 || document.body.innerText.includes('Nội dung có phí') || document.body.innerText.includes('Vui lòng đăng ký');")
+            if has_elements: break
+            time.sleep(0.5)
+
         is_premium = driver.execute_script("return document.body.innerText.includes('Nội dung có phí') || document.body.innerText.includes('Vui lòng đăng ký gói');")
         if is_premium: return None, "PREMIUM"
         try: driver.execute_script("var v=document.querySelector('video'); if(v) v.play();")
@@ -131,6 +213,29 @@ def catch_m3u8_tv360(driver, url, max_wait=60):
         return None, f"Timeout {max_wait}s"
     except Exception as e:
         return None, f"Lỗi System: {str(e)[:30]}"
+
+def _handle_proxy_exhaustion(driver, platform, exclude_set, current_proxy_ip, current_protocol, vn_proxies, logger, current_idx, channels):
+    logger(f"[{platform.upper()}/Scanner] - [WARNING] - 3 kênh liên tiếp thất bại. Cần đổi IP!")
+    if current_proxy_ip:
+        exclude_set.add(current_proxy_ip) 
+    
+    logger(f"[{platform.upper()}/Proxy] - [FETCH] - Đang tìm Proxy mới thay thế...")
+    new_proxy_ip, new_protocol = get_best_proxy_for_target(vn_proxies, platform, exclude_set, logger)
+
+    if new_proxy_ip:
+        logger(f"[{platform.upper()}/Proxy] - [SUCCESS] - Đổi IP: {new_proxy_ip}. Quay lui 3 bước...")
+        driver = reboot_driver(driver, new_proxy_ip, new_protocol)
+        
+        back_steps = 3
+        start_rewind = max(0, current_idx - back_steps + 1)
+        for rewind_idx in range(start_rewind, current_idx + 1):
+            channels[rewind_idx]['m3u8_link'] = None
+            channels[rewind_idx]['source'] = channels[rewind_idx]['original_source']
+            channels[rewind_idx]['error_msg'] = None
+        return driver, new_proxy_ip, new_protocol, start_rewind, 0
+    else:
+        logger(f"[{platform.upper()}/Proxy] - [EXHAUSTED] - Kho IP cạn kiệt. Tiếp tục cào bằng Fallback...")
+        return driver, current_proxy_ip, current_protocol, current_idx + 1, 0
 
 def scan_channels_with_rotation(driver, channels, platform, old_links_dict, exclude_set, current_proxy_ip, current_protocol, proxy_stats, vn_proxies, use_auto_proxy, logger):
     i = 0
@@ -200,34 +305,10 @@ def scan_channels_with_rotation(driver, channels, platform, old_links_dict, excl
                 ch['error_msg'] = "Lỗi toàn tập"
                 logger(f"[{platform.upper()}/Scanner] - [FAILED] - Thất bại hoàn toàn (Không có file cũ).")
 
-            # BUSINESS RULE: Nếu 3 kênh liên tiếp thất bại, IP hiện tại có khả năng đã bị Server chặn ngầm.
-            # Cần đổi Proxy mới và lùi lại (rewind) 3 bước để cào lại các kênh bị đánh dấu lỗi oan.
             if consecutive_fails >= 3:
-                logger(f"[{platform.upper()}/Scanner] - [WARNING] - 3 kênh liên tiếp thất bại. Cần đổi IP!")
-                if current_proxy_ip:
-                    exclude_set.add(current_proxy_ip) 
-                
-                logger(f"[{platform.upper()}/Proxy] - [FETCH] - Đang tìm Proxy mới thay thế...")
-                new_proxy_ip, new_protocol = get_best_proxy_for_target(vn_proxies, platform, exclude_set, logger)
-
-                if new_proxy_ip:
-                    logger(f"[{platform.upper()}/Proxy] - [SUCCESS] - Đổi IP: {new_proxy_ip}. Quay lui 3 bước...")
-                    current_proxy_ip = new_proxy_ip
-                    current_protocol = new_protocol
-                    driver = reboot_driver(driver, current_proxy_ip, current_protocol)
-                    consecutive_fails = 0
-
-                    back_steps = 3
-                    start_rewind = max(0, i - back_steps + 1)
-                    for rewind_idx in range(start_rewind, i + 1):
-                        channels[rewind_idx]['m3u8_link'] = None
-                        channels[rewind_idx]['source'] = channels[rewind_idx]['original_source']
-                        channels[rewind_idx]['error_msg'] = None
-                    i = start_rewind 
-                else:
-                    logger(f"[{platform.upper()}/Proxy] - [EXHAUSTED] - Kho IP cạn kiệt. Tiếp tục cào bằng Fallback...")
-                    consecutive_fails = 0 
-                    i += 1
+                driver, current_proxy_ip, current_protocol, i, consecutive_fails = _handle_proxy_exhaustion(
+                    driver, platform, exclude_set, current_proxy_ip, current_protocol, vn_proxies, logger, i, channels
+                )
             else:
                 i += 1
     return driver
@@ -238,6 +319,13 @@ def _intercept_vtv_api_and_link(driver, timeout_sec, logger):
     temp_vtv_master_link = None
     api_req_url = None
     vtv_keywords = ['vtv', 'cdn', 'stream', 'live', 'media', 'truyenhinhso', 'mediatech', 'playlist', 'manifest']
+    
+    dump_dir = os.path.join(os.getcwd(), "vtv_api_dumps")
+    os.makedirs(dump_dir, exist_ok=True)
+    
+    smart_cache = load_smart_cache()
+    catalog_path = smart_cache.get("catalog_api_path")
+    stream_path = smart_cache.get("stream_api_path")
     
     for wait_sec in range(timeout_sec):
         try:
@@ -260,69 +348,72 @@ def _intercept_vtv_api_and_link(driver, timeout_sec, logger):
                 if not api_auth_headers and method == 'Network.requestWillBeSent':
                     req_params = log_msg['params']['request']
                     req_url = req_params['url']
-                    req_method = req_params.get('method', '').upper()
-                    
-                    # FIX: Chuyển đổi sang API mới v21.0 của VTV
-                    if 'display/v21.0/catalogs/with-channels' in req_url and req_method != 'OPTIONS':
-                        temp_headers = req_params.get('headers', {})
-                        if any(k.lower() == 'authorization' for k in temp_headers.keys()):
-                            api_auth_headers = temp_headers
-                            api_req_url = req_url
-                            logger(f"[VTV/Network] - [INTERCEPT] - Đã trộm Headers/Token API: {req_url.split('?')[0]}")
+                    if 'Authorization' in req_params.get('headers', {}):
+                        api_auth_headers = req_params['headers']
                             
-                if not captured_api_json and method == 'Network.responseReceived':
-                    resp_url = log_msg['params']['response']['url']
-                    if 'display/v21.0/catalogs/with-channels' in resp_url:
-                        req_id = log_msg['params']['requestId']
+                if method == 'Network.responseReceived':
+                    resp = log_msg['params']['response']
+                    resp_url = resp.get('url', '')
+                    mime_type = resp.get('mimeType', '')
+                    req_id = log_msg['params']['requestId']
+
+                    if 'application/json' in mime_type and any(domain in resp_url for domain in ['api.vtvdigital.org', 'vtvgo.vn']):
                         try:
                             body = driver.execute_cdp_cmd('Network.getResponseBody', {'requestId': req_id})
-                            captured_api_json = json.loads(body['body'])
-                        except: pass
+                            json_data = json.loads(body['body'])
+                            
+                            parsed_url = urlparse(resp_url)
+                            path = parsed_url.path.strip('/')
+                            if not path: path = "root"
+                            safe_name = re.sub(r'[^a-zA-Z0-9_\-]', '_', path) + ".json" 
+                            dump_path = os.path.join(dump_dir, safe_name)
+                            
+                            with open(dump_path, 'w', encoding='utf-8') as f:
+                                json.dump(json_data, f, ensure_ascii=False, indent=4)
+
+                            # BUSINESS RULE: Cập nhật Trí tuệ tự động nhận diện Danh sách kênh
+                            if catalog_path and path == catalog_path and not captured_api_json:
+                                captured_api_json = json_data
+                                logger(f"[VTV/Smart] - Nhận diện Danh sách kênh bằng Cache thành công!")
+                            elif not captured_api_json and is_catalog_json(json_data):
+                                captured_api_json = json_data
+                                smart_cache["catalog_api_path"] = path
+                                save_smart_cache(smart_cache)
+                                logger(f"[VTV/Smart] - Dò thấy cấu trúc JSON Kênh mới. Đã lưu bộ nhớ: {path}")
+
+                            # BUSINESS RULE: Cập nhật Trí tuệ tự động nhận diện Link Stream
+                            if stream_path and path == stream_path and not temp_vtv_master_link:
+                                stream_link = extract_stream_from_json(json_data)
+                                if stream_link:
+                                    temp_vtv_master_link = stream_link
+                                    logger(f"[VTV/Smart] - Nhận diện Link Stream bằng Cache thành công!")
+                            elif not temp_vtv_master_link:
+                                stream_link = extract_stream_from_json(json_data)
+                                if stream_link:
+                                    temp_vtv_master_link = stream_link
+                                    smart_cache["stream_api_path"] = path
+                                    save_smart_cache(smart_cache)
+                                    logger(f"[VTV/Smart] - Dò thấy cấu trúc JSON STREAM mới. Đã lưu bộ nhớ: {path}")
+
+                        except Exception: pass
 
                 if not temp_vtv_master_link and method == 'Network.requestWillBeSent':
                     req_url = log_msg['params']['request']['url']
                     if '.m3u8' in req_url and any(kw in req_url.lower() for kw in vtv_keywords):
                         temp_vtv_master_link = req_url
-                        logger(f"[VTV/Network] - [INTERCEPT] - Bắt được Link Gốc M3U8: {req_url.split('?')[0]}")
                         
             except Exception: continue
             
-        if api_auth_headers and temp_vtv_master_link:
-            logger(f"[VTV/Network] - [READY] - Có đủ Token API Mới & Link M3U8 (sau {wait_sec+1}s).")
+        if captured_api_json and temp_vtv_master_link:
+            logger(f"[VTV/Network] - [READY] - Đã bắt đủ JSON Kênh & Link M3U8 (sau {wait_sec+1}s).")
             break
         time.sleep(1)
     return api_auth_headers, captured_api_json, temp_vtv_master_link, api_req_url
 
-def _fetch_vtv_channels_via_js(driver, api_auth_headers, api_req_url, logger):
-    logger("[VTV/Fetch] - [REQUEST] - Gửi Fetch Request bằng JS vào API mới...")
-    clean_headers = {k: v for k, v in api_auth_headers.items() if not k.startswith(':')}
-    js_fetch = f"""
-    var callback = arguments[arguments.length - 1];
-    fetch("{api_req_url}", {{
-        method: "GET",
-        headers: {json.dumps(clean_headers)}
-    }})
-    .then(res => res.json())
-    .then(data => callback({{success: true, data: data}}))
-    .catch(err => callback({{success: false, error: err.toString()}}));
-    """
-    try:
-        driver.set_script_timeout(15) 
-        res = driver.execute_async_script(js_fetch)
-        if res and res.get('success'):
-            logger("[VTV/Fetch] - [SUCCESS] - Fetch JS thủ công hoàn tất.")
-            return res.get('data')
-        else:
-            logger(f"[VTV/Fetch] - [FAILED] - Fetch JS lỗi: {res.get('error')}")
-    except Exception as req_err:
-        logger(f"[VTV/Fetch] - [ERROR] - Ngoại lệ gọi Fetch JS: {req_err}")
-    return None
-
 def _parse_vtv_json_data(api_json_data, logger):
-    logger("[VTV/Parser] - [START] - Phân tích dữ liệu JSON VTV API v21.0...")
+    logger("[VTV/Parser] - [START] - Phân tích dữ liệu JSON VTV API...")
     vtv_channels = []
     
-    # FIX: Parse phòng thủ để tương thích với JSON mới chưa biết chính xác 100% cấu trúc
     data_root = api_json_data.get('data', api_json_data)
     groups = data_root.get('channels', data_root) if isinstance(data_root, dict) else data_root
     if not isinstance(groups, list):
@@ -342,19 +433,16 @@ def _parse_vtv_json_data(api_json_data, logger):
             gn_lower = gn_name.lower()
             ch_name_lower = c.get('name', '').lower()
             
-            # BUSINESS RULE: Chặn đứng các kênh VTVCab / ON Sports trả phí lọt thỏm trong nhóm "Trong nước"
-            # Cập nhật: Chặn thêm nhóm "ONE VTV Sport" để ngăn các kênh SCTV cao cấp lọt lưới nội suy hỏng.
             if ch_name_lower.startswith('on ') or any(kw in gn_lower or kw in ch_name_lower for kw in ['vtvcab', 'one vtv']):
                 continue
             
             if any(kw in gn_lower or kw in ch_name_lower for kw in ['vtv', 'sctv', 'địa phương', 'dia phuong', 'trong nước', 'thiết yếu']):
-                # BUSINESS RULE: Mọi kênh VTV (ngoại trừ SCTV) đều bị ép thành 'vtvgo_dynamic'
                 src_type = 'vtvgo_static' if 'sctv' in gn_lower or 'sctv' in ch_name_lower else 'vtvgo_dynamic'
                 vtv_channels.append({
                     'id': str(c.get('id')), 'name': c.get('name'), 'logo': c.get('logo', ''),
                     'group_name': gn_name if gn_name != 'Khác' else 'Địa phương', 
                     'source': src_type, 'original_source': src_type, 
-                    'url': f"https://vtvgo.vn/channel/{c.get('id')}", # FIX: Cấu trúc URL Rút Gọn Mới
+                    'url': f"https://vtvgo.vn/channel/{c.get('id')}", 
                     'm3u8_link': None, 'error_msg': None, 'skip': False
                 })
                 count_channels += 1
@@ -367,7 +455,6 @@ def _extract_vtv_channels_from_dom(driver, logger):
     logger("[VTV/Parser] - [FALLBACK] - Thử Fallback quét trực tiếp thẻ <a> trên giao diện mới...")
     vtv_channels = []
     
-    # Kịch bản JS quét dọc toàn màn hình để thu thập link /channel/ID
     js_extractor = """
         var results = [];
         var links = document.querySelectorAll('a');
@@ -406,7 +493,6 @@ def _extract_vtv_channels_from_dom(driver, logger):
             for c in dom_list:
                 ch_name_lower = c.get('name', '').lower()
                 
-                # BUSINESS RULE: Chặn đứng nhóm VTVCab và ONE VTV
                 if ch_name_lower.startswith('on ') or 'vtvcab' in ch_name_lower or 'one vtv' in ch_name_lower: 
                     continue
                     
@@ -453,33 +539,23 @@ def _vtv_extract_dom_loop(driver, vtv_ip, vtv_proto, logger):
         try:
             driver.set_page_load_timeout(t)
             
-            # Dọn dẹp cache log trước khi chạy vòng lặp DOM
             driver.get('about:blank')
             driver.get_log('performance')
             
             driver.get("https://vtvgo.vn/channel/1")
             
-            # WORKAROUND: Cắt lỗ nhanh nếu trình duyệt hiển thị màn hình báo lỗi Proxy từ Chrome
-            page_src = driver.page_source
-            if "ERR_CONNECTION" in page_src or "ERR_PROXY" in page_src or "ERR_TIMED_OUT" in page_src:
+            if is_browser_network_error(driver):
                 logger("[VTV/DOM] - [FAILED] - 🚨 Proxy Dead: Trình duyệt báo lỗi mạng")
                 raise Exception("Proxy Dead: Trình duyệt trả về trang báo lỗi mạng")
 
             api_auth_headers, captured_api_json, temp_vtv_master_link, api_req_url = _intercept_vtv_api_and_link(driver, t, logger)
                 
-            api_json_data = None
-            if api_auth_headers and api_req_url:
-                api_json_data = _fetch_vtv_channels_via_js(driver, api_auth_headers, api_req_url, logger)
-
-            if not api_json_data and captured_api_json:
-                logger("[VTV/DOM] - [FALLBACK] - ⚠️ Sử dụng JSON bị giới hạn bắt được từ trình duyệt.")
-                api_json_data = captured_api_json
+            api_json_data = captured_api_json
 
             if api_json_data and 'data' in api_json_data:
                 vtv_channels = _parse_vtv_json_data(api_json_data, logger)
                 if vtv_channels: dom_success = True
             
-            # FIX: Gọi Fallback lấy bằng JS trên DOM thay cho regex cũ
             if not dom_success:
                 vtv_channels = _extract_vtv_channels_from_dom(driver, logger)
                 if vtv_channels: dom_success = True
@@ -487,7 +563,6 @@ def _vtv_extract_dom_loop(driver, vtv_ip, vtv_proto, logger):
             if temp_vtv_master_link:
                 vtv_master_link = temp_vtv_master_link
                     
-            # BUSINESS RULE: Nếu lấy được DOM thì phá vỡ vòng lặp retry ngay lập tức.
             if dom_success:
                 if vtv_master_link:
                     for ch in vtv_channels:
@@ -503,19 +578,7 @@ def _vtv_extract_dom_loop(driver, vtv_ip, vtv_proto, logger):
         except Exception as ex: 
             logger(f"[VTV/DOM] - [ERROR] - Ngoại lệ: {ex}")
         
-        # Chỉ debug và khởi động lại nếu THẬT SỰ không lấy được DOM
         if not dom_success:
-            try:
-                logger(f"[VTV/Debug] - [INFO] - Tiêu đề trang hiện tại: {driver.title}")
-                page_src = driver.page_source
-                clean_html = re.sub(r'\s+', ' ', page_src[:1000])
-                logger(f"[VTV/Debug] - [INFO] - 1000 ký tự HTML:\n{clean_html}")
-                screenshot_path = os.path.join(os.getcwd(), f"debug_vtv_proxy_{int(time.time())}.png")
-                driver.save_screenshot(screenshot_path)
-                logger(f"[VTV/Debug] - [INFO] - 📸 Đã lưu ảnh: {screenshot_path}")
-            except Exception as debug_err:
-                logger(f"[VTV/Debug] - [ERROR] - ⚠️ Lỗi debug: {debug_err}")
-        
             logger("[VTV/DOM] - [REBOOT] - Chưa đủ dữ liệu. Khởi động lại trình duyệt...")
             driver = reboot_driver(driver, vtv_ip, vtv_proto)
 
@@ -527,10 +590,8 @@ def _vtv_fallback_from_old_file(old_links_dict, logger):
     for old_name, old_data in old_links_dict.items():
         gn_lower = old_data.get('group', '').lower()
         if 'vtv' in gn_lower or 'địa phương' in gn_lower or 'sctv' in gn_lower:
-            # Chặn nhóm bị blacklist ngay cả trong fallback từ file cũ
             if 'vtvcab' in gn_lower or 'one vtv' in gn_lower: continue
             
-            # BUSINESS RULE: Tương tự như trên, chỉ sctv là static
             src_type = 'vtvgo_static' if 'sctv' in gn_lower else 'vtvgo_dynamic'
             vtv_channels.append({
                 'id': 'fallback', 'name': old_name, 'logo': old_data.get('logo', ''),
@@ -577,8 +638,22 @@ def process_vtv_pipeline(old_links_dict, alive_cached, exclude_proxies, vn_proxi
     if not dom_success:
         vtv_channels = _vtv_fallback_from_old_file(old_links_dict, logger)
 
-    # BUSINESS RULE: Nếu lấy được DOM nhưng mất Link Gốc VTV1, 
-    # ta ép kênh VTV1 thành dạng "quét ngầm" và đẩy xuống CUỐI MẢNG.
+    # BUSINESS RULE: Tự động sinh 22 kênh SCTV ẩn và nối vào cuối danh sách
+    sctv_mocks = []
+    for i in range(1, 23):
+        sctv_mocks.append({
+            'id': f'sctv{i}', 'name': f'SCTV {i}', 'logo': '',
+            'group_name': 'SCTV', 'source': 'vtvgo_static', 'original_source': 'vtvgo_static',
+            'url': '', 'm3u8_link': None, 'error_msg': None, 'skip': False
+        })
+    
+    existing_names = [ch['name'].upper() for ch in vtv_channels]
+    for mock in sctv_mocks:
+        if mock['name'].upper() not in existing_names:
+            vtv_channels.append(mock)
+            
+    logger(f"[VTV/Pipeline] - [SCTV] - Bơm thành công giả lập 22 kênh SCTV ẩn vào danh sách chờ xử lý.")
+
     if vtv_channels and not vtv_master_link and vtv_channels[0]['source'] != 'fallback_only':
         vtv1_idx = None
         for idx, ch in enumerate(vtv_channels):
@@ -599,7 +674,6 @@ def process_vtv_pipeline(old_links_dict, alive_cached, exclude_proxies, vn_proxi
             logger(f"[VTV/Pipeline] - [START] - Duyệt ngầm {len(vtv_dynamic)} Kênh...")
             driver = scan_channels_with_rotation(driver, vtv_dynamic, 'vtv', old_links_dict, exclude_proxies, vtv_ip, vtv_proto, vtv_proxy_stats, vn_proxies, use_auto_proxy, logger)
                     
-    # Hậu kiểm: Vớt lại Master Link từ VTV1 nếu chiến thuật ép cuối mảng thành công
     if not vtv_master_link and vtv_channels:
         for ch in vtv_channels:
             if ch['name'].upper() == "VTV1" and ch.get('m3u8_link') and ch['source'] != 'fallback_only':
@@ -674,24 +748,32 @@ def _tv360_extract_dom_loop(driver, tv360_ip, tv360_proto, logger):
             
             driver.get("https://tv360.vn/tv")
             
-            # WORKAROUND: Kiểm tra trang báo lỗi do mạng sập
-            page_src = driver.page_source
-            if "ERR_CONNECTION" in page_src or "ERR_PROXY" in page_src or "ERR_TIMED_OUT" in page_src:
+            if is_browser_network_error(driver):
                 logger("[TV360/DOM] - [FAILED] - 🚨 Proxy Dead: Trình duyệt báo lỗi mạng")
                 raise Exception("Proxy Dead")
                 
-            time.sleep(3) 
+            # FIX: Chờ động - Chờ tối đa 10s để load xong khung xương container thay vì sleep cứng 3s
+            for _ in range(20): 
+                if driver.execute_script("return document.querySelectorAll('.container-section').length > 0"):
+                    break
+                time.sleep(0.5)
             
-            driver.execute_script("""
+            # FIX: Chờ động Async Scroll - JS tự báo cáo về Python khi cuộn xong, tránh việc ngâm tĩnh 4s
+            driver.set_script_timeout(15)
+            driver.execute_async_script("""
+                var callback = arguments[arguments.length - 1];
                 var totalHeight = 0; var distance = 600;
                 var timer = setInterval(() => {
                     var scrollHeight = document.body.scrollHeight;
                     window.scrollBy(0, distance);
                     totalHeight += distance;
-                    if(totalHeight >= scrollHeight) clearInterval(timer);
-                }, 250);
+                    if(totalHeight >= scrollHeight) {
+                        clearInterval(timer);
+                        callback(true);
+                    }
+                }, 200);
+                setTimeout(() => { clearInterval(timer); callback(false); }, 10000);
             """)
-            time.sleep(4) 
             
             dom_list = driver.execute_script(js_extractor_smart)
             if dom_list:

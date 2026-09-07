@@ -1,0 +1,4 @@
+{
+    "catalog_api_path": "display/v21.0/catalogs/with-channels",
+    "stream_api_path": "live-channel/v21.0/playback/source"
+}
