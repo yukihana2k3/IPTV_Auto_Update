@@ -283,6 +283,8 @@ https://vtvgolive-vtv02.vtvdigital.vn/joF2Ax8CT7gAMqnNBzaUPg/1793894901/hls/vtv/
 https://vtvgolive-vtv02.vtvdigital.vn/tB1dF16elRSaSF6dDz1eEA/1793894903/hls/vtv/live/vtv9/free/master.m3u8
 #EXTINF:-1 tvg-id="6" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090518/e7a60819e5-thumb-vtv10.webp" group-title="Trong nước", 6
 https://vtvgolive-vtv02.vtvdigital.vn/ViLUDgQCzMGN_H6LwJbQJA/1793894905/hls/vtv/live/vtv10/free/master.m3u8
+#EXTINF:-1 tvg-id="SCTV 1" tvg-logo="" group-title="SCTV", SCTV 1
+https://vtvgolive-sctvdrm.vtvdigital.vn/VLAkLXoF-x1pMBQVLVi2MA/1794128268/manifest/sctv1/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 2" tvg-logo="" group-title="SCTV", SCTV 2
 https://vtvgolive-sctvdrm.vtvdigital.vn/yQemRNoslrjWkWshEnHUPQ/1794128703/manifest/sctv2/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 3" tvg-logo="" group-title="SCTV", SCTV 3
