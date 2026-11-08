@@ -286,9 +286,11 @@ https://vtvgolive-ott3.vtvdigital.vn/live/hatinhtv/playlist.m3u8
 #EXTINF:-1 tvg-id="SCTV 1" tvg-logo="" group-title="SCTV", SCTV 1
 https://vtvgolive-sctvdrm.vtvdigital.vn/207LVz5JPEJgj7eS755_Yg/1784533545/manifest/sctv1/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 2" tvg-logo="" group-title="SCTV", SCTV 2
-https://vtvgolive-sctvdrm.vtvdigital.vn/hktHxn4ZtDpELQHGm7Vv_Q/1794232946/manifest/sctv2/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/RA8uCMIfIrAi--Het5Acfg/1794237148/manifest/sctv2/master.m3u8
+#EXTINF:-1 tvg-id="SCTV 3" tvg-logo="" group-title="SCTV", SCTV 3
+https://vtvgolive-sctvdrm.vtvdigital.vn/RA8uCMIfIrAi--Het5Acfg/1794237148/manifest/sctv3/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 4" tvg-logo="" group-title="SCTV", SCTV 4
-https://vtvgolive-sctvdrm.vtvdigital.vn/hktHxn4ZtDpELQHGm7Vv_Q/1794232946/manifest/sctv4/master.m3u8
+https://vtvgolive-sctvdrm.vtvdigital.vn/RA8uCMIfIrAi--Het5Acfg/1794237148/manifest/sctv4/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 6" tvg-logo="" group-title="SCTV", SCTV 6
 https://vtvgolive-sctvdrm.vtvdigital.vn/hktHxn4ZtDpELQHGm7Vv_Q/1794232946/manifest/sctv6/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 7" tvg-logo="" group-title="SCTV", SCTV 7
