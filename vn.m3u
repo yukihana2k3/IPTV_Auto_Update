@@ -183,6 +183,30 @@ https://vtvgolive-vtclc.vtvdigital.vn/iV8CRCB5VtvoRkUXYFlI6A/1794189940/media/li
 https://vtvgolive-vtclc.vtvdigital.vn/zpPGsoBMNnzxyvZTJvSgvg/1794189943/media/live/FEC4E26FBD78CE924E91BC03/index.m3u8
 #EXTINF:-1 tvg-id="Truyền hình Hà Tĩnh" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250629/2025062922/6yqJDL6bnV-Logo-HATINH-150x90.webp" group-title="Kênh thiết yếu và địa phương", Truyền hình Hà Tĩnh
 https://vtvgolive-ott3.vtvdigital.vn/live/hatinhtv/playlist.m3u8
+#EXTINF:-1 tvg-id="1" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/d978b81d5e-thumb-vtv1.webp&width=320" group-title="Trong nước", 1
+https://vtvgolive-vtv02.vtvdigital.vn/je5Y_va7bGdCli4lVu2kUg/1794232980/hls/vtv/live/vtv1/free/master.m3u8
+#EXTINF:-1 tvg-id="2" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/c0b2ac5577-thumb-vtv2.webp&width=320" group-title="Trong nước", 2
+https://vtvgolive-vtv02.vtvdigital.vn/YIUXH7DxB-CS0vJyiDaYnw/1794232983/hls/vtv/live/vtv2/free/master.m3u8
+#EXTINF:-1 tvg-id="3" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/3956c266d1-thumb-vtv3.webp&width=320" group-title="Trong nước", 3
+https://vtvgolive-vtv02.vtvdigital.vn/H_FRdOlAHzSO7Gi8BnuyEA/1794232985/hls/vtv/live/vtv3/free/master.m3u8
+#EXTINF:-1 tvg-id="4" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/d389e6957c-thumb-vtv4.webp&width=320" group-title="Trong nước", 4
+https://vtvgolive-vtv02.vtvdigital.vn/sCEHL0WIv85Pa1mij7jYVQ/1794232987/hls/vtv/live/vtv4/free/master.m3u8
+#EXTINF:-1 tvg-id="5" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/cab10a8d2e-thumb-vtv5.webp&width=320" group-title="Trong nước", 5
+https://vtvgolive-vtv02.vtvdigital.vn/s21gId44PVPJCXJ5RD8hBQ/1794232990/hls/vtv/live/vtv5/free/master.m3u8
+#EXTINF:-1 tvg-id="13" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/39a423131f-thumb-vtv6.webp&width=320" group-title="Trong nước", 13
+https://live-vtv-aws.vtvdigital.vn/IjpbuN_M25xXYn0BPQAHYg/1794247200/aws/vtv6_free/playlist.m3u8
+#EXTINF:-1 tvg-id="36" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/fe30b98f45-thumb-vtv8.webp&width=320" group-title="Trong nước", 36
+https://vtvgolive-vtv02.vtvdigital.vn/zLzbjHJXWUTZEBQ__61uRg/1794232996/hls/vtv/live/vtv8/free/master.m3u8
+#EXTINF:-1 tvg-id="39" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/7cb4edaea1-thumb-vtv9.webp&width=320" group-title="Trong nước", 39
+https://vtvgolive-vtv02.vtvdigital.vn/5AvID2qutyTfbP-ROsjP6A/1794232999/hls/vtv/live/vtv9/free/master.m3u8
+#EXTINF:-1 tvg-id="6" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090518/e7a60819e5-thumb-vtv10.webp&width=320" group-title="Trong nước", 6
+https://vtvgolive-vtv02.vtvdigital.vn/d-Z55PGnSwIqh-dSlrB69w/1794233002/hls/vtv/live/vtv10/free/master.m3u8
+#EXTINF:-1 tvg-id="27" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/3b8afbe922-thumb-vtv7.webp&width=320" group-title="Trong nước", 27
+https://vtvgolive-vtv02.vtvdigital.vn/cnKtgs7xAUepKR5V425PUA/1794233006/hls/vtv/live/vtv7/free/master.m3u8
+#EXTINF:-1 tvg-id="7" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/f1fa7320f8-thumb-vtv5-t-y-nam-b.webp&width=320" group-title="Trong nước", 7
+https://vtvgolive-vtv02.vtvdigital.vn/pD4zy-taep06oFXVP9wplA/1794233010/hls/vtv/live/vtv5tnb/free/master.m3u8
+#EXTINF:-1 tvg-id="163" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/7498f64edd-thumb-vtv5-t-y-nguy-n.webp&width=320" group-title="Trong nước", 163
+https://vtvgolive-vtv02.vtvdigital.vn/JYwTuY52hVR_emaLTw-K0A/1794233012/hls/vtv/live/vtv5tn/free/master.m3u8
 #EXTINF:-1 tvg-id="89" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-images.vtvdigital.vn/images/20230626/ee85e0cb-9878-414d-be21-33eaa4132898.jpg&width=320" group-title="Trong nước", 89
 https://live-diaphuong-aws.vtvdigital.vn/8ltKkSka7PfePl7NUGG8pA/1794247200/aws-dp/antv/playlist.m3u8
 #EXTINF:-1 tvg-id="103" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-images.vtvdigital.vn/images/20230626/dc6d5dca-2e23-4dde-9c61-572df9b2bfcf.jpg?width=500&width=320" group-title="Trong nước", 103
@@ -200,7 +224,7 @@ https://live-diaphuong-aws.vtvdigital.vn/OzlQXZTd-91OLZUsD-Bx8Q/1794247200/aws-d
 #EXTINF:-1 tvg-id="229" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-images.vtvdigital.vn/images/20230609/121a9fe5-fc3d-4565-bb55-a778c787924a.jpg?width=500&width=320" group-title="Trong nước", 229
 https://live-diaphuong-aws.vtvdigital.vn/jnpI5VD5kBmwfTKX0XrZ_w/1794247200/aws-dp/phuthotv/playlist.m3u8
 #EXTINF:-1 tvg-id="231" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-images.vtvdigital.vn/images/20230615/52a9c209-cb9e-455a-8e1d-b25a9ac34bb2.jpg?width=500&width=320" group-title="Trong nước", 231
-https://vtvgolive-liveh34.vtvdigital.vn/1fn4acGp9ikqt5Y1PBHiNA/1794182958/hls/ANGIANGTV/index.m3u8
+https://vtvgolive-liveh34.vtvdigital.vn/Dmf-IW-ves25O3i9kuAggQ/1794189855/hls/ANGIANGTV/index.m3u8
 #EXTINF:-1 tvg-id="183" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-images.vtvdigital.vn/images/20230610/23ce5d79-1d75-4207-b4eb-5639ecb76cb4.jpg?width=500&width=320" group-title="Trong nước", 183
 https://live-diaphuong-aws.vtvdigital.vn/DU4rkjSnecvbeABGGN4g9w/1794247200/aws-dp/ninhbinhtv/playlist.m3u8
 #EXTINF:-1 tvg-id="119" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260821/2026082112/BSvnv06uED-QTV1-Thumbnail.webp&width=320" group-title="Trong nước", 119
@@ -232,7 +256,7 @@ https://live-diaphuong-aws.vtvdigital.vn/JM41n3a1TtObzNmmLNjbFQ/1794247200/aws-d
 #EXTINF:-1 tvg-id="230" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-images.vtvdigital.vn/images/20230610/8600437a-6698-474b-b11f-4397ce3a4965.jpg?width=500&width=320" group-title="Trong nước", 230
 https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/dienbientv-manifest.m3u8
 #EXTINF:-1 tvg-id="219" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250908/2025090816/RDQv8vVSvN-BTV-KENHVTVgo-500x281.webp&width=320" group-title="Trong nước", 219
-https://vtvgolive-liveh34.vtvdigital.vn/-hI-L4nJ6IUdSuxqaWJP6A/1794183060/hls/BACGIANGTV/index.m3u8
+https://vtvgolive-liveh34.vtvdigital.vn/WPwSAc1CxUQGFQ3OmI9QyA/1794189893/hls/BACGIANGTV/index.m3u8
 #EXTINF:-1 tvg-id="224" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-images.vtvdigital.vn/images/20230609/f5bb3ca4-55c0-4e9c-a885-abbc1df27876.jpg?width=500&width=320" group-title="Trong nước", 224
 https://live-diaphuong-aws.vtvdigital.vn/HBcO3zb0xKWK4P5EtUeEJQ/1794247200/aws-dp/lamdongtv/playlist.m3u8
 #EXTINF:-1 tvg-id="321" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260821/2026082109/kdplVvHl37-THUMBNAIL-KENHLangSon-500x281.webp&width=320" group-title="Trong nước", 321
@@ -240,11 +264,11 @@ https://live-diaphuong-aws.vtvdigital.vn/I2G64MXP3hEOCpYjBG-3fg/1794247200/aws-d
 #EXTINF:-1 tvg-id="243" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260205/2026020509/Gt7QRQqd2b-CANTHO1-THUMBNAIL-KENHVTVgo-500x281.webp&width=320" group-title="Trong nước", 243
 https://live-diaphuong-aws.vtvdigital.vn/Y2PvBREeDYCAPcGAs8Pn4g/1794247200/aws-dp/cantho1tv/playlist.m3u8
 #EXTINF:-1 tvg-id="10009" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260904/2026090414/U2MdOj7PAO-VINHLONG1-THUMBNAIL-KENHVTVgo-500x281.webp&width=320" group-title="Trong nước", 10009
-https://vtvgolive-ssaimh.vtvdigital.vn/8z5KSA0Ch_Kl9__-l56jew/1794190275/manifest/dp-vinhlong1tv/master.m3u8
+https://vtvgolive-ssaimh.vtvdigital.vn/pIArrrxtwCVqWc43hQCO0g/1794197101/manifest/dp-vinhlong1tv/master.m3u8
 #EXTINF:-1 tvg-id="10068" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260911/2026091104/2b3a19dc22-HTV9-THUMBNAIL-KENH-VTVgo-500x281-1.webp&width=320" group-title="Trong nước", 10068
 https://live-diaphuong-aws.vtvdigital.vn/FiOgVX-wXxkTXJZ5nI7b2A/1794247200/aws-dp/hcmtv/playlist.m3u8
 #EXTINF:-1 tvg-id="145_nb" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20260421/2026042113/phPCrNicoD-QN1-THUMBNAIL-KENHVTVgo-500x281.webp&width=320" group-title="Trong nước", 145_nb
-https://vtvgolive-vtclc.vtvdigital.vn/IDuInDNceEkau_GRd5HmsQ/1794183085/media/live/12935D096941E2BA0ABCCF41/index.m3u8
+https://vtvgolive-vtclc.vtvdigital.vn/GxucT9B290uTiv3GRUwtuA/1794189905/media/live/12935D096941E2BA0ABCCF41/index.m3u8
 #EXTINF:-1 tvg-id="254" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-images.vtvdigital.vn/images/20250225/a5c18be0-3a0d-4e22-8f70-0a9783439668.jpg?width=500&width=320" group-title="Trong nước", 254
 https://kenhdp-vtvgo.vtvdigital.vn/kenhdp/sonla-manifest.m3u8
 #EXTINF:-1 tvg-id="235" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-images.vtvdigital.vn/images/20230615/bd1a37f4-0477-481d-b856-409097ba146e.jpg?width=500&width=320" group-title="Trong nước", 235
@@ -254,35 +278,13 @@ https://vtvgolive-ott3.vtvdigital.vn/live/binhdinhtv/playlist.m3u8
 #EXTINF:-1 tvg-id="236" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250710/2025071010/0dlUI4wyHn-QUANGTRI-THUMBNAIL-KENHVTVgo-500x281.webp&width=320" group-title="Trong nước", 236
 https://live-diaphuong-aws.vtvdigital.vn/RunZ8zGI08RIo9ofYfs1JA/1794247200/aws-dp/quangtritv/playlist.m3u8
 #EXTINF:-1 tvg-id="247" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-images.vtvdigital.vn/images/20231213/1dcdb882-21c3-4cdf-b533-2a40559b383c.jpg?width=500&width=320" group-title="Trong nước", 247
-https://vtvgolive-vtclc.vtvdigital.vn/ihUpmwqnyglkMb3Qim_Xjg/1794183100/media/live/42297BC521EC911B8934699E/index.m3u8
+https://vtvgolive-vtclc.vtvdigital.vn/k49hBtDc195JdpLAQVZhaQ/1794189917/media/live/42297BC521EC911B8934699E/index.m3u8
 #EXTINF:-1 tvg-id="555" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250629/2025062921/NnWwvFn0Kw-02-THUMB-CAOBANG.webp&width=320" group-title="Trong nước", 555
-https://vtvgolive-vtclc.vtvdigital.vn/XWV38KD_57Sg_gafsVjpZA/1794183102/media/live/FEC4E26FBD78CE924E91BC03/index.m3u8
+https://vtvgolive-vtclc.vtvdigital.vn/XiIGUIdrOA0HzU58jB7HjA/1794189919/media/live/FEC4E26FBD78CE924E91BC03/index.m3u8
 #EXTINF:-1 tvg-id="333" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-assets.vtvdigital.vn/assets/images/v2/channel/20250629/2025062922/04eGcv4Obg-02-THUMB-HATINH.webp&width=320" group-title="Trong nước", 333
 https://vtvgolive-ott3.vtvdigital.vn/live/hatinhtv/playlist.m3u8
-#EXTINF:-1 tvg-id="1" tvg-logo="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" group-title="Trong nước", 1
-https://vtvgolive-vtv02.vtvdigital.vn/175S7YyH8LAcCn1pTnS3nQ/1793894883/hls/vtv/live/vtv1/free/master.m3u8
-#EXTINF:-1 tvg-id="2" tvg-logo="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" group-title="Trong nước", 2
-https://vtvgolive-vtv02.vtvdigital.vn/pUm4HfzYnhGQXim7L6_GMQ/1793894885/hls/vtv/live/vtv2/free/master.m3u8
-#EXTINF:-1 tvg-id="3" tvg-logo="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" group-title="Trong nước", 3
-https://vtvgolive-vtv02.vtvdigital.vn/YmuTGXWrYf3fjZ6MxB93wg/1793894887/hls/vtv/live/vtv3/free/master.m3u8
-#EXTINF:-1 tvg-id="4" tvg-logo="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" group-title="Trong nước", 4
-https://vtvgolive-vtv02.vtvdigital.vn/0D0OWVo4tgdrcepfMidVpQ/1793894889/hls/vtv/live/vtv4/free/master.m3u8
-#EXTINF:-1 tvg-id="5" tvg-logo="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" group-title="Trong nước", 5
-https://vtvgolive-vtv02.vtvdigital.vn/Ob0-X_-7g8oweKDJe2hYDQ/1793894891/hls/vtv/live/vtv5/free/master.m3u8
-#EXTINF:-1 tvg-id="7" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/f1fa7320f8-thumb-vtv5-t-y-nam-b.webp" group-title="Trong nước", 7
-https://vtvgolive-vtv02.vtvdigital.vn/SbNBmsPYLT_UIs8c042xEQ/1793894893/hls/vtv/live/vtv5tnb/free/master.m3u8
-#EXTINF:-1 tvg-id="163" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/7498f64edd-thumb-vtv5-t-y-nguy-n.webp" group-title="Trong nước", 163
-https://vtvgolive-vtv02.vtvdigital.vn/nX29jkIhiXhe7PcE4MWhug/1793894895/hls/vtv/live/vtv5tn/free/master.m3u8
-#EXTINF:-1 tvg-id="13" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/39a423131f-thumb-vtv6.webp" group-title="Trong nước", 13
-https://vtvgolive-vtv02.vtvdigital.vn/a0skfn6ltw1hE1g9ptq6Jw/1793894897/hls/vtv/live/vtv6/free/master.m3u8
-#EXTINF:-1 tvg-id="27" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/3b8afbe922-thumb-vtv7.webp" group-title="Trong nước", 27
-https://vtvgolive-vtv02.vtvdigital.vn/gZSi4L_ZG1YMt_vtYr4REg/1793894899/hls/vtv/live/vtv7/free/master.m3u8
-#EXTINF:-1 tvg-id="36" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/fe30b98f45-thumb-vtv8.webp" group-title="Trong nước", 36
-https://vtvgolive-vtv02.vtvdigital.vn/joF2Ax8CT7gAMqnNBzaUPg/1793894901/hls/vtv/live/vtv8/free/master.m3u8
-#EXTINF:-1 tvg-id="39" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/7cb4edaea1-thumb-vtv9.webp" group-title="Trong nước", 39
-https://vtvgolive-vtv02.vtvdigital.vn/tB1dF16elRSaSF6dDz1eEA/1793894903/hls/vtv/live/vtv9/free/master.m3u8
-#EXTINF:-1 tvg-id="6" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090518/e7a60819e5-thumb-vtv10.webp" group-title="Trong nước", 6
-https://vtvgolive-vtv02.vtvdigital.vn/ViLUDgQCzMGN_H6LwJbQJA/1793894905/hls/vtv/live/vtv10/free/master.m3u8
+#EXTINF:-1 tvg-id="SCTV 1" tvg-logo="" group-title="SCTV", SCTV 1
+https://vtvgolive-sctvdrm.vtvdigital.vn/207LVz5JPEJgj7eS755_Yg/1784533545/manifest/sctv1/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 2" tvg-logo="" group-title="SCTV", SCTV 2
 https://vtvgolive-sctvdrm.vtvdigital.vn/hktHxn4ZtDpELQHGm7Vv_Q/1794232946/manifest/sctv2/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 4" tvg-logo="" group-title="SCTV", SCTV 4
