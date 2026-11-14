@@ -22,7 +22,7 @@ https://vtvgolive-vtv02.vtvdigital.vn/XkZQ-t7NDCWE-jaMAi3HQA/1794683054/hls/vtv/
 #EXTINF:-1 tvg-id="VTV7" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/714cd7639c-vtv7.webp" group-title="Kênh VTV", VTV7
 https://vtvgolive-vtv02.vtvdigital.vn/2LtvnZoxb5fEG6tw6OOGSA/1794683058/hls/vtv/live/vtv7/free/master.m3u8
 #EXTINF:-1 tvg-id="VTV5 Tây Nam Bộ" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/eeb81bb42b-vtv5-ta-y-nam-bo.webp" group-title="Kênh VTV", VTV5 Tây Nam Bộ
-https://vtvgolive-vtv02.vtvdigital.vn/KoX77IpqQqF-PHC_a96D8Q/1794680741/hls/vtv/live/vtv5tnb/free/master.m3u8
+https://vtvgolive-vtv02.vtvdigital.vn/UQcgsLk4xDHg6ZKf_vkggw/1794686820/hls/vtv/live/vtv5tnb/free/master.m3u8
 #EXTINF:-1 tvg-id="VTV5 Tây Nguyên" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090516/f7759fd665-vtv5-t-y-nguy-n.webp" group-title="Kênh VTV", VTV5 Tây Nguyên
 https://vtvgolive-vtv02.vtvdigital.vn/XO7B90Vxt0a1Soc3BCjYnQ/1794683469/hls/vtv/live/vtv5tn/free/master.m3u8
 #EXTINF:-1 tvg-id="VTVgo · Vui vẻ" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20261106/2026110609/117e523a-f7f8-4ebb-b4ec-1c40936affff-LOGO-KENH-Vui-Ve--150x90.png" group-title="Chuỗi nội dung VTVgo", VTVgo · Vui vẻ
@@ -295,6 +295,10 @@ https://vtvgolive-sctvdrm.vtvdigital.vn/8ZooPE-bB36UqIfGGj-OuQ/1794679200/manife
 https://vtvgolive-sctvdrm.vtvdigital.vn/8ZooPE-bB36UqIfGGj-OuQ/1794679200/manifest/sctv11/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 12" tvg-logo="" group-title="SCTV", SCTV 12
 https://vtvgolive-sctvdrm.vtvdigital.vn/8ZooPE-bB36UqIfGGj-OuQ/1794679200/manifest/sctv12/master.m3u8
+#EXTINF:-1 tvg-id="SCTV 13" tvg-logo="" group-title="SCTV", SCTV 13
+https://vtvgolive-sctvdrm.vtvdigital.vn/8ZooPE-bB36UqIfGGj-OuQ/1794679200/manifest/sctv13/master.m3u8
+#EXTINF:-1 tvg-id="SCTV 14" tvg-logo="" group-title="SCTV", SCTV 14
+https://vtvgolive-sctvdrm.vtvdigital.vn/8ZooPE-bB36UqIfGGj-OuQ/1794679200/manifest/sctv14/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 15" tvg-logo="" group-title="SCTV", SCTV 15
 https://vtvgolive-sctvdrm.vtvdigital.vn/8ZooPE-bB36UqIfGGj-OuQ/1794679200/manifest/sctv15/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 16" tvg-logo="" group-title="SCTV", SCTV 16
