@@ -100,7 +100,7 @@ https://fo-hlc.tv360.vn/bpk-tv/419/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsIn
 #EXTINF:-1 tvg-id="HTVC du lịch & cuộc sống" tvg-logo="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" group-title="Kênh HTV", HTVC du lịch & cuộc sống
 https://fo-hlc.tv360.vn/bpk-tv/399/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXRob2QiOiJHRVQiLCJleHAiOjE3OTUyMjk3OTMsInVyaSI6Ii9icGstdHYvMzk5L291dHB1dC9pbmRleC5tM3U4In0.VyZ5V3uN1KCT3Yak0GDYAtnt1UAXQHzJodku73bDTQc&minrate=0&maxrate=12000000&uid=171.242.14.54
 #EXTINF:-1 tvg-id="Vĩnh Long 1" tvg-logo="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" group-title="Kênh Vĩnh Long", Vĩnh Long 1
-# Lỗi: Lỗi toàn tập | Link test: https://tv360.vn/tv/vinh-long-1?ch=25&col=7808462&sect=LIVE&page=home_live
+https://rr1-ateme.tv360.vn/live/eds/252/HLS_Clean_MHL_2s/index.m3u8?cdntoken=eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJwYXRoIjoiL2xpdmUvZWRzLzI1Mi9ITFNfQ2xlYW5fTUhMXzJzLyIsImV4cCI6MTc5NTIzMjE2MH0.zW4KgnxCQzS2OcZxTtdADIfYcW-_qYUWRx4oot8hpBBjKCpIVAWXHCyOvT4Nzgxu9lPlPULFzbAQaorEVwH7CA&screen=MHL&uid=113.161.134.128
 #EXTINF:-1 tvg-id="Vĩnh Long 2" tvg-logo="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" group-title="Kênh Vĩnh Long", Vĩnh Long 2
 https://fo-hlc.tv360.vn/bpk-tv/249/output/index.m3u8?auth=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZXRob2QiOiJHRVQiLCJleHAiOjE3OTUyMjkzNjEsInVyaSI6Ii9icGstdHYvMjQ5L291dHB1dC9pbmRleC5tM3U4In0.gPqan5A7QKfrQ9NeRdYs7fyMNsRR7T1z2Z3v-74csN8&minrate=0&maxrate=12000000&uid=171.242.14.54
 #EXTINF:-1 tvg-id="Vĩnh Long 3" tvg-logo="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" group-title="Kênh Vĩnh Long", Vĩnh Long 3
@@ -281,14 +281,8 @@ https://vtvgolive-vtv02.vtvdigital.vn/Ky1oNJAi8kUWv8MyIoYpqg/1794388190/hls/vtv/
 https://vtvgolive-vtv02.vtvdigital.vn/LZ6a-HUiBthCL_U9tLeJ-w/1794388194/hls/vtv/live/vtv5tnb/free/master.m3u8
 #EXTINF:-1 tvg-id="163" tvg-logo="https://thumb.vtvdigital.org/transform?url=https://vtvgo-next-assets.vtvdigital.vn/prod/images/channel/20260905/2026090510/7498f64edd-thumb-vtv5-t-y-nguy-n.webp&width=320" group-title="Trong nước", 163
 https://vtvgolive-vtv02.vtvdigital.vn/S08uQHK-oSs5R6BRk_TNOw/1794388196/hls/vtv/live/vtv5tn/free/master.m3u8
-#EXTINF:-1 tvg-id="SCTV 2" tvg-logo="" group-title="SCTV", SCTV 2
-https://vtvgolive-sctvdrm.vtvdigital.vn/mOFZUZB1vENVB7idoJR1tg/1795284000/manifest/sctv2/master.m3u8
-#EXTINF:-1 tvg-id="SCTV 3" tvg-logo="" group-title="SCTV", SCTV 3
-https://vtvgolive-sctvdrm.vtvdigital.vn/mOFZUZB1vENVB7idoJR1tg/1795284000/manifest/sctv3/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 4" tvg-logo="" group-title="SCTV", SCTV 4
 https://vtvgolive-sctvdrm.vtvdigital.vn/mOFZUZB1vENVB7idoJR1tg/1795284000/manifest/sctv4/master.m3u8
-#EXTINF:-1 tvg-id="SCTV 6" tvg-logo="" group-title="SCTV", SCTV 6
-https://vtvgolive-sctvdrm.vtvdigital.vn/mOFZUZB1vENVB7idoJR1tg/1795284000/manifest/sctv6/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 7" tvg-logo="" group-title="SCTV", SCTV 7
 https://vtvgolive-sctvdrm.vtvdigital.vn/mOFZUZB1vENVB7idoJR1tg/1795284000/manifest/sctv7/master.m3u8
 #EXTINF:-1 tvg-id="SCTV 9" tvg-logo="" group-title="SCTV", SCTV 9
